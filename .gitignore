@@ -1,0 +1,16 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserdata
+*.xcworkspace/xcuserdata/
+xcuserdata/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Ghostty build outputs (built from source)
+Frameworks/GhosttyKit.xcframework/
+Resources/ghostty/
+Resources/terminfo/

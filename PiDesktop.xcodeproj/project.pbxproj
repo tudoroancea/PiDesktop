@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BF7673E67776E22E197FEC6 /* GhosttyRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7068A01AADFC8F6055F0125 /* GhosttyRuntime.swift */; };
+		33C5669C33600A453399CD0D /* PiDesktopApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */; };
+		391F749CABEE759E033ED326 /* GhosttySurfaceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03062A7CEDF906A0521C0E3 /* GhosttySurfaceState.swift */; };
+		397850A493A2E06CFA3A1A07 /* GhosttySurfaceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD92119EC7A515554AC900 /* GhosttySurfaceBridge.swift */; };
+		77C2CFBEC5FFB722154F8975 /* GhosttyTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862560F5E8488F3EFCDFE26 /* GhosttyTerminalView.swift */; };
+		7871DF54EDA1614B5AEBD604 /* GhosttySplitAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */; };
+		7EB91EA108690A8FB50F2785 /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC300E56717253C509E9989 /* SecureInput.swift */; };
+		8F46E86AFAEC71A36F12FBB0 /* GhosttyShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */; };
+		943D0A8E93359FD722744C2F /* ghostty in Resources */ = {isa = PBXBuildFile; fileRef = 730558BDAB14FEBBED35D4C9 /* ghostty */; };
+		A1EACB9583282E4FA60CC075 /* GhosttyKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D62DD9042DB25030452E912 /* GhosttyKit.xcframework */; };
+		BC1EE5B4D1588FF3CEDB8DEB /* GhosttySurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D420DAD2051A9F5053A9B96 /* GhosttySurfaceView.swift */; };
+		CC4EBADB549DFA92B407A6B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EA61D5AC541B7A29465FBB /* Carbon.framework */; };
+		E394CE23DF70A5477738B3DD /* terminfo in Resources */ = {isa = PBXBuildFile; fileRef = 9A6348D0DE49F359B61604E2 /* terminfo */; };
+		F16287C2A5DFFF43F80F4AE3 /* GhosttyKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D62DD9042DB25030452E912 /* GhosttyKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04CB616A67F5E30CCF123EF9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F16287C2A5DFFF43F80F4AE3 /* GhosttyKit.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1BC300E56717253C509E9989 /* SecureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInput.swift; sourceTree = "<group>"; };
+		2D420DAD2051A9F5053A9B96 /* GhosttySurfaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySurfaceView.swift; sourceTree = "<group>"; };
+		5862560F5E8488F3EFCDFE26 /* GhosttyTerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyTerminalView.swift; sourceTree = "<group>"; };
+		65AD92119EC7A515554AC900 /* GhosttySurfaceBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySurfaceBridge.swift; sourceTree = "<group>"; };
+		6D62DD9042DB25030452E912 /* GhosttyKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GhosttyKit.xcframework; sourceTree = "<group>"; };
+		730558BDAB14FEBBED35D4C9 /* ghostty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ghostty; sourceTree = "<group>"; };
+		7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiDesktopApp.swift; sourceTree = "<group>"; };
+		95EA61D5AC541B7A29465FBB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		9A6348D0DE49F359B61604E2 /* terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = terminfo; sourceTree = "<group>"; };
+		A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyShortcutManager.swift; sourceTree = "<group>"; };
+		A97C29AD63741CF438998CE6 /* PiDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7068A01AADFC8F6055F0125 /* GhosttyRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyRuntime.swift; sourceTree = "<group>"; };
+		EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySplitAction.swift; sourceTree = "<group>"; };
+		F03062A7CEDF906A0521C0E3 /* GhosttySurfaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySurfaceState.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		29B2D46AA747A59804D46E1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1EACB9583282E4FA60CC075 /* GhosttyKit.xcframework in Frameworks */,
+				CC4EBADB549DFA92B407A6B1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		175C932161BEBF3B8BB1F58C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D62DD9042DB25030452E912 /* GhosttyKit.xcframework */,
+				95EA61D5AC541B7A29465FBB /* Carbon.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		7882D14E196057770B59E53D = {
+			isa = PBXGroup;
+			children = (
+				80D2865255AFF7F737C7183C /* PiDesktop */,
+				175C932161BEBF3B8BB1F58C /* Frameworks */,
+				F46FB683FBA087970B5F7032 /* Resources */,
+				BF7A2D27A78D590BDEF15AF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80D2865255AFF7F737C7183C /* PiDesktop */ = {
+			isa = PBXGroup;
+			children = (
+				7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */,
+				AEA7ABE7831C6F0DB4BBDF00 /* Infrastructure */,
+			);
+			path = PiDesktop;
+			sourceTree = "<group>";
+		};
+		9DCED3047020D506EE5C9C7F /* Ghostty */ = {
+			isa = PBXGroup;
+			children = (
+				D7068A01AADFC8F6055F0125 /* GhosttyRuntime.swift */,
+				A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */,
+				EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */,
+				65AD92119EC7A515554AC900 /* GhosttySurfaceBridge.swift */,
+				F03062A7CEDF906A0521C0E3 /* GhosttySurfaceState.swift */,
+				2D420DAD2051A9F5053A9B96 /* GhosttySurfaceView.swift */,
+				5862560F5E8488F3EFCDFE26 /* GhosttyTerminalView.swift */,
+				1BC300E56717253C509E9989 /* SecureInput.swift */,
+			);
+			path = Ghostty;
+			sourceTree = "<group>";
+		};
+		AEA7ABE7831C6F0DB4BBDF00 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				9DCED3047020D506EE5C9C7F /* Ghostty */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		BF7A2D27A78D590BDEF15AF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A97C29AD63741CF438998CE6 /* PiDesktop.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F46FB683FBA087970B5F7032 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				730558BDAB14FEBBED35D4C9 /* ghostty */,
+				9A6348D0DE49F359B61604E2 /* terminfo */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90FE9A328CF662A7A918906D /* PiDesktop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F707ED8CFBC457F7F618ECA6 /* Build configuration list for PBXNativeTarget "PiDesktop" */;
+			buildPhases = (
+				E7209FB05162B7572F88D05E /* Sources */,
+				29B2D46AA747A59804D46E1F /* Frameworks */,
+				66F8606E9F0A136E2228EBCB /* Resources */,
+				04CB616A67F5E30CCF123EF9 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PiDesktop;
+			productName = PiDesktop;
+			productReference = A97C29AD63741CF438998CE6 /* PiDesktop.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = CB7CBE0C3B42E7D081FECC31 /* Build configuration list for PBXProject "PiDesktop" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7882D14E196057770B59E53D;
+			productRefGroup = BF7A2D27A78D590BDEF15AF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90FE9A328CF662A7A918906D /* PiDesktop */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		66F8606E9F0A136E2228EBCB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				943D0A8E93359FD722744C2F /* ghostty in Resources */,
+				E394CE23DF70A5477738B3DD /* terminfo in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7209FB05162B7572F88D05E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33C5669C33600A453399CD0D /* PiDesktopApp.swift in Sources */,
+				0BF7673E67776E22E197FEC6 /* GhosttyRuntime.swift in Sources */,
+				BC1EE5B4D1588FF3CEDB8DEB /* GhosttySurfaceView.swift in Sources */,
+				397850A493A2E06CFA3A1A07 /* GhosttySurfaceBridge.swift in Sources */,
+				391F749CABEE759E033ED326 /* GhosttySurfaceState.swift in Sources */,
+				77C2CFBEC5FFB722154F8975 /* GhosttyTerminalView.swift in Sources */,
+				7871DF54EDA1614B5AEBD604 /* GhosttySplitAction.swift in Sources */,
+				8F46E86AFAEC71A36F12FBB0 /* GhosttyShortcutManager.swift in Sources */,
+				7EB91EA108690A8FB50F2785 /* SecureInput.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		17234DA728CB8FFFA593E13A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = BQYU8UZ8T7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -Wno-incomplete-umbrella";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tudoroancea.PiDesktop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		339F2120A275E8028CC42767 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = BQYU8UZ8T7;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -Wno-incomplete-umbrella";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tudoroancea.PiDesktop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7BF40F069D95C38DE60AA602 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		EC86DC4F4B4C60C3EC031655 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB7CBE0C3B42E7D081FECC31 /* Build configuration list for PBXProject "PiDesktop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC86DC4F4B4C60C3EC031655 /* Debug */,
+				7BF40F069D95C38DE60AA602 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F707ED8CFBC457F7F618ECA6 /* Build configuration list for PBXNativeTarget "PiDesktop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				339F2120A275E8028CC42767 /* Debug */,
+				17234DA728CB8FFFA593E13A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
