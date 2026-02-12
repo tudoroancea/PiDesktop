@@ -13,6 +13,8 @@
 		397850A493A2E06CFA3A1A07 /* GhosttySurfaceBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AD92119EC7A515554AC900 /* GhosttySurfaceBridge.swift */; };
 		77C2CFBEC5FFB722154F8975 /* GhosttyTerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5862560F5E8488F3EFCDFE26 /* GhosttyTerminalView.swift */; };
 		7871DF54EDA1614B5AEBD604 /* GhosttySplitAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */; };
+		7DE8C4852F3DF7FE00B916E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DE8C4842F3DF7FE00B916E1 /* Assets.xcassets */; };
+		7DE8C4872F3DF86200B916E1 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 7DE8C4862F3DF86200B916E1 /* AppIcon.icon */; };
 		7EB91EA108690A8FB50F2785 /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC300E56717253C509E9989 /* SecureInput.swift */; };
 		8F46E86AFAEC71A36F12FBB0 /* GhosttyShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */; };
 		943D0A8E93359FD722744C2F /* ghostty in Resources */ = {isa = PBXBuildFile; fileRef = 730558BDAB14FEBBED35D4C9 /* ghostty */; };
@@ -61,6 +63,8 @@
 		6D62DD9042DB25030452E912 /* GhosttyKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GhosttyKit.xcframework; sourceTree = "<group>"; };
 		730558BDAB14FEBBED35D4C9 /* ghostty */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ghostty; sourceTree = "<group>"; };
 		7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiDesktopApp.swift; sourceTree = "<group>"; };
+		7DE8C4842F3DF7FE00B916E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DE8C4862F3DF86200B916E1 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		95EA61D5AC541B7A29465FBB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A6348D0DE49F359B61604E2 /* terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = terminfo; sourceTree = "<group>"; };
 		A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyShortcutManager.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		7882D14E196057770B59E53D = {
 			isa = PBXGroup;
 			children = (
+				7DE8C4862F3DF86200B916E1 /* AppIcon.icon */,
 				80D2865255AFF7F737C7183C /* PiDesktop */,
 				175C932161BEBF3B8BB1F58C /* Frameworks */,
 				F46FB683FBA087970B5F7032 /* Resources */,
@@ -120,7 +125,7 @@
 			);
 			sourceTree = "<group>";
 		};
-			80D2865255AFF7F737C7183C /* PiDesktop */ = {
+		80D2865255AFF7F737C7183C /* PiDesktop */ = {
 			isa = PBXGroup;
 			children = (
 				7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */,
@@ -132,36 +137,6 @@
 				CC0009010000000100000001 /* Theme */,
 			);
 			path = PiDesktop;
-			sourceTree = "<group>";
-		};
-		CC0007010000000100000001 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				AA0007010000000100000001 /* AppShortcuts.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		CC0004010000000100000001 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				AA0004010000000100000004 /* Project.swift */,
-				AA0004010000000100000003 /* ProjectWorktree.swift */,
-				AA0004010000000100000002 /* PiSession.swift */,
-				AA0004010000000100000001 /* SessionStatus.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		CC0004010000000100000002 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				AA0004010000000100000005 /* ProjectStore.swift */,
-				AA0004010000000100000009 /* GitService.swift */,
-				AA000401000000010000000A /* SessionScanner.swift */,
-				AA000401000000010000000B /* ProcessMonitor.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		9DCED3047020D506EE5C9C7F /* Ghostty */ = {
@@ -195,15 +170,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CC0009010000000100000001 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				AA0009010000000100000001 /* RosePineTheme.swift */,
-				AA0009010000000100000002 /* WindowStyling.swift */,
-			);
-			path = Theme;
-			sourceTree = "<group>";
-		};
 		CC0001010000000100000001 /* Features */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,16 +177,6 @@
 				CC0001010000000100000002 /* Terminal */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		CC0004010000000100000003 /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				AA0004010000000100000006 /* SidebarView.swift */,
-				AA0004010000000100000007 /* ProjectSectionView.swift */,
-				AA0004010000000100000008 /* WorktreeRowView.swift */,
-			);
-			path = Sidebar;
 			sourceTree = "<group>";
 		};
 		CC0001010000000100000002 /* Terminal */ = {
@@ -234,11 +190,61 @@
 			path = Terminal;
 			sourceTree = "<group>";
 		};
+		CC0004010000000100000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004010000000100000004 /* Project.swift */,
+				AA0004010000000100000003 /* ProjectWorktree.swift */,
+				AA0004010000000100000002 /* PiSession.swift */,
+				AA0004010000000100000001 /* SessionStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC0004010000000100000002 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004010000000100000005 /* ProjectStore.swift */,
+				AA0004010000000100000009 /* GitService.swift */,
+				AA000401000000010000000A /* SessionScanner.swift */,
+				AA000401000000010000000B /* ProcessMonitor.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CC0004010000000100000003 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				AA0004010000000100000006 /* SidebarView.swift */,
+				AA0004010000000100000007 /* ProjectSectionView.swift */,
+				AA0004010000000100000008 /* WorktreeRowView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		CC0007010000000100000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0007010000000100000001 /* AppShortcuts.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CC0009010000000100000001 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AA0009010000000100000001 /* RosePineTheme.swift */,
+				AA0009010000000100000002 /* WindowStyling.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		F46FB683FBA087970B5F7032 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				730558BDAB14FEBBED35D4C9 /* ghostty */,
 				9A6348D0DE49F359B61604E2 /* terminfo */,
+				7DE8C4842F3DF7FE00B916E1 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -295,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				943D0A8E93359FD722744C2F /* ghostty in Resources */,
+				7DE8C4872F3DF86200B916E1 /* AppIcon.icon in Resources */,
+				7DE8C4852F3DF7FE00B916E1 /* Assets.xcassets in Resources */,
 				E394CE23DF70A5477738B3DD /* terminfo in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,12 +352,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BQYU8UZ8T7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
@@ -379,12 +389,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BQYU8UZ8T7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks";
