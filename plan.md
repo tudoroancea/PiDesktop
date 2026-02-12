@@ -317,7 +317,7 @@ func openInZed(path: URL) {
 
 Both exposed as toolbar buttons + the keybindings above.
 
-### Phase 9: Rosé Pine Theme
+### Phase 9: Rosé Pine Theme ✅
 
 Implement as a Swift color palette used for all app chrome (sidebar, tab bar, backgrounds):
 
@@ -345,7 +345,7 @@ enum RosePine {
 
 The terminal itself will use whatever ghostty theme the user has configured (presumably also rosé pine via `~/.config/ghostty/config`). The app chrome matches.
 
-### Phase 10: Pi Session Integration Details
+### Phase 10: Pi Session Integration Details ✅
 
 **Spawning pi in a tab**:
 ```swift

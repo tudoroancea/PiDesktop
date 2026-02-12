@@ -49,6 +49,15 @@ All app-level keybindings are defined in `PiDesktop/App/AppShortcuts.swift`. The
 
 Key bindings use `Cmd+Ctrl` and `Cmd+Shift` combos to avoid collisions with both ghostty defaults (`Cmd+T/W/N/1-9`) and pi keybindings (`Ctrl+P/L/C/D`).
 
+## Theme
+
+- Rosé Pine (dark) + Rosé Pine Dawn (light) — auto-switches via `NSAppearance.isDark`
+- All adaptive colors use `NSColor(name:dynamicProvider:)` under the hood
+- `RosePineTheme.swift` has `RosePine.Dark.*` / `RosePine.Dawn.*` for explicit variant access
+- `WindowStyling.swift` has `.rosePineWindow()` modifier — sets transparent titlebar + base background
+- Sidebar uses `.scrollContentBackground(.hidden)` + `RosePine.surface` to override system sidebar color
+- `RosePine.nsBase` / `RosePine.nsSurface` are `NSColor` variants for window chrome
+
 ## Adding Files to Xcode Project
 
 The `.xcodeproj/project.pbxproj` must be manually edited to add new Swift files:

@@ -17,6 +17,8 @@ struct SidebarView: View {
       }
     }
     .listStyle(.sidebar)
+    .scrollContentBackground(.hidden)
+    .background(RosePine.surface)
     .searchable(text: $searchText, placement: .sidebar, prompt: "Search Projects")
     .navigationTitle("Projects")
     .toolbar {

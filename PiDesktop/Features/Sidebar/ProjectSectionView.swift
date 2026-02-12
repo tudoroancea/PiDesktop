@@ -50,7 +50,7 @@ struct ProjectSectionView: View {
     }
     .buttonStyle(.plain)
     .listRowBackground(
-      isSelected ? Color.accentColor.opacity(0.2) : Color.clear
+      isSelected ? RosePine.sidebarSelected : Color.clear
     )
     .contextMenu {
       Button("Open Pi Session") {

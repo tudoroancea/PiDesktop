@@ -226,10 +226,12 @@ private struct MainContentView: View {
   var body: some View {
     NavigationSplitView {
       SidebarView(projectStore: projectStore, tabManager: tabManager)
+        .background(RosePine.surface)
     } detail: {
       TerminalDetailView(tabManager: tabManager)
     }
     .frame(minWidth: 800, minHeight: 500)
+    .rosePineWindow()
   }
 }
 

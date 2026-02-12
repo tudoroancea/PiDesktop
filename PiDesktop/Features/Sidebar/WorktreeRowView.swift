@@ -14,6 +14,7 @@ struct WorktreeRowView: View {
       // Worktree/branch name
       Text(name)
         .font(.system(size: 13))
+        .foregroundStyle(RosePine.text)
         .lineLimit(1)
         .truncationMode(.middle)
 
@@ -25,12 +26,12 @@ struct WorktreeRowView: View {
           if added > 0 {
             Text("+\(added)")
               .font(.system(size: 11, design: .monospaced))
-              .foregroundStyle(.green)
+              .foregroundStyle(RosePine.diffAdded)
           }
           if removed > 0 {
             Text("-\(removed)")
               .font(.system(size: 11, design: .monospaced))
-              .foregroundStyle(.red)
+              .foregroundStyle(RosePine.diffRemoved)
           }
         }
       }
@@ -44,22 +45,22 @@ struct WorktreeRowView: View {
     switch sessionStatus {
     case .running:
       Circle()
-        .fill(.green)
+        .fill(RosePine.statusRunning)
         .frame(width: 8, height: 8)
         .help("Pi session running")
     case .idle:
       Circle()
-        .fill(.yellow)
+        .fill(RosePine.statusIdle)
         .frame(width: 8, height: 8)
         .help("Pi session idle")
     case .terminal:
       Circle()
-        .fill(.secondary.opacity(0.5))
+        .fill(RosePine.statusTerminal)
         .frame(width: 8, height: 8)
         .help("Terminal open (no pi session)")
     case .stopped:
       Circle()
-        .strokeBorder(.secondary.opacity(0.5), lineWidth: 1)
+        .strokeBorder(RosePine.statusStopped, lineWidth: 1)
         .frame(width: 8, height: 8)
         .help("No active session")
     }

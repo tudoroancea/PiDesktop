@@ -21,6 +21,7 @@ struct TerminalDetailView: View {
         }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(RosePine.base)
     }
   }
 
@@ -28,13 +29,13 @@ struct TerminalDetailView: View {
     VStack(spacing: 12) {
       Image(systemName: "terminal")
         .font(.system(size: 48))
-        .foregroundStyle(.tertiary)
+        .foregroundStyle(RosePine.muted)
       Text("No tabs open for this worktree")
         .font(.headline)
-        .foregroundStyle(.secondary)
+        .foregroundStyle(RosePine.subtle)
       Text("Right-click the worktree in the sidebar to open a session")
         .font(.subheadline)
-        .foregroundStyle(.tertiary)
+        .foregroundStyle(RosePine.muted)
     }
   }
 
@@ -42,13 +43,13 @@ struct TerminalDetailView: View {
     VStack(spacing: 12) {
       Image(systemName: "sidebar.left")
         .font(.system(size: 48))
-        .foregroundStyle(.tertiary)
+        .foregroundStyle(RosePine.muted)
       Text("Select a worktree")
         .font(.headline)
-        .foregroundStyle(.secondary)
+        .foregroundStyle(RosePine.subtle)
       Text("Choose a project worktree from the sidebar")
         .font(.subheadline)
-        .foregroundStyle(.tertiary)
+        .foregroundStyle(RosePine.muted)
     }
   }
 }

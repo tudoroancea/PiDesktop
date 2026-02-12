@@ -18,7 +18,7 @@ struct TerminalTabBarView: View {
       .padding(.horizontal, 8)
     }
     .frame(height: 36)
-    .background(.bar)
+    .background(RosePine.surface)
   }
 }
 
@@ -34,16 +34,16 @@ private struct TabItemView: View {
     HStack(spacing: 6) {
       Image(systemName: tab.type.iconName)
         .font(.system(size: 11))
-        .foregroundStyle(isSelected ? .primary : .secondary)
+        .foregroundStyle(isSelected ? RosePine.rose : RosePine.subtle)
 
       Text(tab.title)
         .font(.system(size: 12))
         .lineLimit(1)
-        .foregroundStyle(isSelected ? .primary : .secondary)
+        .foregroundStyle(isSelected ? RosePine.text : RosePine.subtle)
 
       if tab.hasNotification {
         Circle()
-          .fill(.blue)
+          .fill(RosePine.notificationBadge)
           .frame(width: 6, height: 6)
       }
 
@@ -57,7 +57,7 @@ private struct TabItemView: View {
         Button(action: onClose) {
           Image(systemName: "xmark")
             .font(.system(size: 8, weight: .bold))
-            .foregroundStyle(.secondary)
+            .foregroundStyle(RosePine.muted)
         }
         .buttonStyle(.plain)
         .frame(width: 16, height: 16)
@@ -67,7 +67,7 @@ private struct TabItemView: View {
     .padding(.vertical, 6)
     .background(
       RoundedRectangle(cornerRadius: 6)
-        .fill(isSelected ? Color.accentColor.opacity(0.15) : (isHovering ? Color.primary.opacity(0.05) : Color.clear))
+        .fill(isSelected ? RosePine.tabSelected : (isHovering ? RosePine.tabHover : Color.clear))
     )
     .onTapGesture(perform: onSelect)
     .onHover { hovering in
