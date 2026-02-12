@@ -24,7 +24,7 @@ struct WorktreeRowView: View {
 
       // Worktree/branch name
       Text(name)
-        .font(.system(size: 13))
+        .font(.jetBrainsMono(size: 13))
         .foregroundStyle(RosePine.text)
         .lineLimit(1)
         .truncationMode(.middle)
@@ -36,12 +36,12 @@ struct WorktreeRowView: View {
         HStack(spacing: 4) {
           if added > 0 {
             Text("+\(added)")
-              .font(.system(size: 11, design: .monospaced))
+              .font(.jetBrainsMono(size: 11))
               .foregroundStyle(RosePine.diffAdded)
           }
           if removed > 0 {
             Text("-\(removed)")
-              .font(.system(size: 11, design: .monospaced))
+              .font(.jetBrainsMono(size: 11))
               .foregroundStyle(RosePine.diffRemoved)
           }
         }
@@ -52,7 +52,7 @@ struct WorktreeRowView: View {
           onDelete?()
         } label: {
           Image(systemName: "xmark")
-            .font(.system(size: 9, weight: .bold))
+            .font(.jetBrainsMono(size: 9, weight: .bold))
             .foregroundStyle(isHoveringDelete ? RosePine.love : RosePine.subtle)
         }
         .buttonStyle(.plain)

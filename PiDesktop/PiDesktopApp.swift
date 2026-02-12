@@ -49,6 +49,7 @@ struct PiDesktopApp: App {
 
   @MainActor init() {
     NSWindow.allowsAutomaticWindowTabbing = false
+    JetBrainsMono.registerFonts()
 
     // Point ghostty at bundled resources
     if let resourceURL = Bundle.main.resourceURL?.appendingPathComponent("ghostty") {

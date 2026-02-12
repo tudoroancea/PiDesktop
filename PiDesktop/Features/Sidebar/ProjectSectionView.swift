@@ -16,12 +16,12 @@ struct ProjectSectionView: View {
       // MARK: - Project Header
       HStack {
         Image(systemName: isExpanded ? "chevron.down" : "chevron.right")
-          .font(.system(size: 10, weight: .semibold))
+          .font(.jetBrainsMono(size: 10, weight: .semibold))
           .foregroundStyle(RosePine.subtle)
           .frame(width: 12)
 
         Text(project.name)
-          .font(.system(size: 14, weight: .semibold))
+          .font(.jetBrainsMono(size: 14, weight: .semibold))
           .foregroundStyle(RosePine.text)
 
         Spacer()
@@ -31,7 +31,7 @@ struct ProjectSectionView: View {
             showingCreateWorktree = true
           } label: {
             Image(systemName: "plus")
-              .font(.caption)
+              .font(.jetBrainsMono(size: 11))
               .foregroundStyle(RosePine.subtle)
           }
           .buttonStyle(.plain)

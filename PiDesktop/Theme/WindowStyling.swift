@@ -13,7 +13,27 @@ struct RosePineWindowStyle: ViewModifier {
         window.titleVisibility = .visible
         // Use full-size content view so sidebar + detail fill behind titlebar
         window.styleMask.insert(.fullSizeContentView)
+
+        // Apply JetBrains Mono to the window title
+        applyTitleFont(to: window)
       })
+  }
+
+  private func applyTitleFont(to window: NSWindow) {
+    guard let titleFont = NSFont(name: "JetBrainsMonoNF-Medium", size: 13) else { return }
+    // The title text field lives in the titlebar container view
+    if let titlebarView = window.standardWindowButton(.closeButton)?.superview?.superview {
+      applyFont(titleFont, in: titlebarView)
+    }
+  }
+
+  private func applyFont(_ font: NSFont, in view: NSView) {
+    if let textField = view as? NSTextField {
+      textField.font = font
+    }
+    for subview in view.subviews {
+      applyFont(font, in: subview)
+    }
   }
 }
 

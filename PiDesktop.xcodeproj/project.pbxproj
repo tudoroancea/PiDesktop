@@ -39,9 +39,11 @@
 		BB0007010000000100000001 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0007010000000100000001 /* AppShortcuts.swift */; };
 		BB0009010000000100000001 /* RosePineTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0009010000000100000001 /* RosePineTheme.swift */; };
 		BB0009010000000100000002 /* WindowStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0009010000000100000002 /* WindowStyling.swift */; };
+		BB0009010000000100000003 /* Font+JetBrainsMono.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0009010000000100000003 /* Font+JetBrainsMono.swift */; };
 		BC1EE5B4D1588FF3CEDB8DEB /* GhosttySurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D420DAD2051A9F5053A9B96 /* GhosttySurfaceView.swift */; };
 		CC4EBADB549DFA92B407A6B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EA61D5AC541B7A29465FBB /* Carbon.framework */; };
 		E394CE23DF70A5477738B3DD /* terminfo in Resources */ = {isa = PBXBuildFile; fileRef = 9A6348D0DE49F359B61604E2 /* terminfo */; };
+		FF0009010000000100000001 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = EE0009010000000100000001 /* Fonts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +71,7 @@
 		7DE8C4862F3DF86200B916E1 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		95EA61D5AC541B7A29465FBB /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A6348D0DE49F359B61604E2 /* terminfo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = terminfo; sourceTree = "<group>"; };
+		EE0009010000000100000001 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		A1ED51BAFDE5D4871419B014 /* GhosttyShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyShortcutManager.swift; sourceTree = "<group>"; };
 		A97C29AD63741CF438998CE6 /* PiDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0001010000000100000001 /* TerminalTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalTab.swift; sourceTree = "<group>"; };
@@ -91,6 +94,7 @@
 		AA0007010000000100000001 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		AA0009010000000100000001 /* RosePineTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosePineTheme.swift; sourceTree = "<group>"; };
 		AA0009010000000100000002 /* WindowStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStyling.swift; sourceTree = "<group>"; };
+		AA0009010000000100000003 /* Font+JetBrainsMono.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+JetBrainsMono.swift"; sourceTree = "<group>"; };
 		D7068A01AADFC8F6055F0125 /* GhosttyRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyRuntime.swift; sourceTree = "<group>"; };
 		EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySplitAction.swift; sourceTree = "<group>"; };
 		F03062A7CEDF906A0521C0E3 /* GhosttySurfaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySurfaceState.swift; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 			children = (
 				AA0009010000000100000001 /* RosePineTheme.swift */,
 				AA0009010000000100000002 /* WindowStyling.swift */,
+				AA0009010000000100000003 /* Font+JetBrainsMono.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				730558BDAB14FEBBED35D4C9 /* ghostty */,
 				9A6348D0DE49F359B61604E2 /* terminfo */,
 				7DE8C4842F3DF7FE00B916E1 /* Assets.xcassets */,
+				EE0009010000000100000001 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 				7DE8C4872F3DF86200B916E1 /* AppIcon.icon in Resources */,
 				7DE8C4852F3DF7FE00B916E1 /* Assets.xcassets in Resources */,
 				E394CE23DF70A5477738B3DD /* terminfo in Resources */,
+				FF0009010000000100000001 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +356,7 @@
 				BB0007010000000100000001 /* AppShortcuts.swift in Sources */,
 				BB0009010000000100000001 /* RosePineTheme.swift in Sources */,
 				BB0009010000000100000002 /* WindowStyling.swift in Sources */,
+				BB0009010000000100000003 /* Font+JetBrainsMono.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

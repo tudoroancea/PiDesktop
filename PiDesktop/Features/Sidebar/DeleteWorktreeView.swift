@@ -19,7 +19,7 @@ struct DeleteWorktreeView: View {
     VStack(spacing: 0) {
       // Header
       Text("Delete Worktree")
-        .font(.headline)
+        .font(.jetBrainsMono(size: 17, weight: .semibold))
         .foregroundStyle(RosePine.text)
         .padding(.top, 16)
         .padding(.bottom, 12)
@@ -39,7 +39,7 @@ struct DeleteWorktreeView: View {
               Text("This worktree has uncommitted changes.")
                 .foregroundStyle(RosePine.subtle)
             }
-            .font(.callout)
+            .font(.jetBrainsMono(size: 13))
 
             Toggle("Discard uncommitted changes", isOn: $forceDelete)
           }
@@ -51,7 +51,7 @@ struct DeleteWorktreeView: View {
 
       if let errorMessage {
         Text(errorMessage)
-          .font(.caption)
+          .font(.jetBrainsMono(size: 11))
           .foregroundStyle(.red)
           .padding(.horizontal, 20)
           .padding(.top, 8)

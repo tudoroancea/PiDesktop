@@ -26,7 +26,7 @@ struct TerminalTabBarView: View {
         tabManager.createTab(type: .shell, workingDirectory: dir)
       } label: {
         Image(systemName: "plus")
-          .font(.system(size: 12, weight: .medium))
+          .font(.jetBrainsMono(size: 12, weight: .medium))
           .foregroundStyle(RosePine.subtle)
           .frame(width: 30, height: 28)
           .contentShape(Rectangle())
@@ -61,7 +61,7 @@ private struct TabItemView: View {
       // Close button (left side)
       Button(action: onClose) {
         Image(systemName: "xmark")
-          .font(.system(size: 8, weight: .bold))
+          .font(.jetBrainsMono(size: 8, weight: .bold))
           .foregroundStyle(RosePine.muted)
           .frame(width: 18, height: 18)
       }
@@ -85,11 +85,11 @@ private struct TabItemView: View {
         }
 
         Image(systemName: tab.type.iconName)
-          .font(.system(size: 10))
+          .font(.jetBrainsMono(size: 10))
           .foregroundStyle(isSelected ? RosePine.text : RosePine.muted)
 
         Text(tab.title)
-          .font(.system(size: 12))
+          .font(.jetBrainsMono(size: 12))
           .lineLimit(1)
           .foregroundStyle(isSelected ? RosePine.text : RosePine.subtle)
       }
@@ -99,7 +99,7 @@ private struct TabItemView: View {
       // Shortcut hint (right side)
       if let shortcutLabel {
         Text(shortcutLabel)
-          .font(.system(size: 9, weight: .medium, design: .rounded))
+          .font(.jetBrainsMono(size: 9, weight: .medium))
           .foregroundStyle(RosePine.muted.opacity(0.6))
           .opacity(isHovering || isSelected ? 1 : 0)
       } else {

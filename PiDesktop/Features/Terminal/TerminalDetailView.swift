@@ -49,13 +49,13 @@ struct TerminalDetailView: View {
   private var worktreeEmptyState: some View {
     VStack(spacing: 12) {
       Image(systemName: "terminal")
-        .font(.system(size: 48))
+        .font(.jetBrainsMono(size: 48))
         .foregroundStyle(RosePine.muted)
       Text("No tabs open for this worktree")
-        .font(.headline)
+        .font(.jetBrainsMono(size: 17, weight: .semibold))
         .foregroundStyle(RosePine.subtle)
       Text("Right-click the worktree in the sidebar to open a session")
-        .font(.subheadline)
+        .font(.jetBrainsMono(size: 14))
         .foregroundStyle(RosePine.muted)
     }
   }
@@ -63,13 +63,13 @@ struct TerminalDetailView: View {
   private var noWorktreeState: some View {
     VStack(spacing: 12) {
       Image(systemName: "sidebar.left")
-        .font(.system(size: 48))
+        .font(.jetBrainsMono(size: 48))
         .foregroundStyle(RosePine.muted)
       Text("Select a worktree")
-        .font(.headline)
+        .font(.jetBrainsMono(size: 17, weight: .semibold))
         .foregroundStyle(RosePine.subtle)
       Text("Choose a project worktree from the sidebar")
-        .font(.subheadline)
+        .font(.jetBrainsMono(size: 14))
         .foregroundStyle(RosePine.muted)
     }
   }
@@ -84,11 +84,34 @@ private struct WindowTitleUpdater: NSViewRepresentable {
   func makeNSView(context: Context) -> NSView {
     let view = NSView()
     view.frame = .zero
-    DispatchQueue.main.async { view.window?.title = title }
+    DispatchQueue.main.async {
+      view.window?.title = title
+      applyTitleFont(to: view.window)
+    }
     return view
   }
 
   func updateNSView(_ nsView: NSView, context: Context) {
-    DispatchQueue.main.async { nsView.window?.title = title }
+    DispatchQueue.main.async {
+      nsView.window?.title = title
+      applyTitleFont(to: nsView.window)
+    }
+  }
+
+  private func applyTitleFont(to window: NSWindow?) {
+    guard let window,
+          let titleFont = NSFont(name: "JetBrainsMonoNF-Medium", size: 13),
+          let titlebarView = window.standardWindowButton(.closeButton)?.superview?.superview
+    else { return }
+    applyFont(titleFont, in: titlebarView)
+  }
+
+  private func applyFont(_ font: NSFont, in view: NSView) {
+    if let textField = view as? NSTextField {
+      textField.font = font
+    }
+    for subview in view.subviews {
+      applyFont(font, in: subview)
+    }
   }
 }

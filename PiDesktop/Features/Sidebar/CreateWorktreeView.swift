@@ -18,7 +18,7 @@ struct CreateWorktreeView: View {
     VStack(spacing: 0) {
       // Header
       Text("New Worktree")
-        .font(.headline)
+        .font(.jetBrainsMono(size: 17, weight: .semibold))
         .foregroundStyle(RosePine.text)
         .padding(.top, 16)
         .padding(.bottom, 12)
@@ -41,7 +41,7 @@ struct CreateWorktreeView: View {
 
       if let errorMessage {
         Text(errorMessage)
-          .font(.caption)
+          .font(.jetBrainsMono(size: 11))
           .foregroundStyle(.red)
           .padding(.horizontal, 20)
           .padding(.bottom, 8)
