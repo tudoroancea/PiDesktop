@@ -2,7 +2,7 @@
    Bourbaki Landing Page — Rosé Pine / Editorial
    ============================================ */
 
-/* --- Rosé Pine Palette --- */
+/* --- Rosé Pine (Dark) Palette --- */
 :root {
   --base: #191724;
   --surface: #1f1d2e;
@@ -19,6 +19,41 @@
   --highlight-low: #21202e;
   --highlight-med: #403d52;
   --highlight-high: #524f67;
+
+  /* Icon-specific colors (dark on gold diamond) */
+  --icon-stroke: #26233a;
+  --icon-post: #908caa;
+
+  /* Nav backdrop */
+  --nav-bg: rgba(25, 23, 36, 0.75);
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --btn-primary-shadow: rgba(196, 167, 231, 0.2);
+}
+
+/* --- Rosé Pine Dawn (Light) Palette --- */
+:root[data-theme="light"] {
+  --base: #faf4ed;
+  --surface: #fffaf3;
+  --overlay: #f2e9e1;
+  --muted: #9893a5;
+  --subtle: #797593;
+  --text: #575279;
+  --love: #b4637a;
+  --gold: #ea9d34;
+  --rose: #d7827e;
+  --pine: #286983;
+  --foam: #56949f;
+  --iris: #907aa9;
+  --highlight-low: #f4ede8;
+  --highlight-med: #dfdad9;
+  --highlight-high: #cecacd;
+
+  --icon-stroke: #575279;
+  --icon-post: #9893a5;
+
+  --nav-bg: rgba(250, 244, 237, 0.8);
+  --card-shadow: rgba(87, 82, 121, 0.08);
+  --btn-primary-shadow: rgba(144, 122, 169, 0.15);
 }
 
 /* --- Reset & Base --- */
@@ -105,7 +140,7 @@ code {
   padding: 0 2rem;
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
-  background: rgba(25, 23, 36, 0.75);
+  background: var(--nav-bg);
   border-bottom: 1px solid rgba(110, 106, 134, 0.1);
 }
 
@@ -171,6 +206,56 @@ code {
 .nav-cta:hover {
   border-color: var(--subtle);
   background: var(--highlight-low);
+}
+
+/* --- Theme Toggle --- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--highlight-med);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--subtle);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--highlight-low);
+}
+
+/* In dark mode (default): show sun icon, hide moon */
+.theme-icon--light { display: none; }
+.theme-icon--dark { display: block; }
+
+/* In light mode: show moon icon, hide sun */
+:root[data-theme="light"] .theme-icon--light { display: block; }
+:root[data-theme="light"] .theme-icon--dark { display: none; }
+
+/* Smooth transition for all themed properties */
+body,
+.nav,
+.feature-card,
+.tool-card,
+.keybindings,
+.stack-card,
+.start,
+.code-block,
+.code-header,
+.footer,
+kbd,
+code,
+.hero-badge,
+.tool-badge {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
 }
 
 /* --- Hero --- */
@@ -283,7 +368,7 @@ code {
   background: var(--rose);
   color: var(--base);
   transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(196, 167, 231, 0.2);
+  box-shadow: 0 8px 30px var(--btn-primary-shadow);
 }
 
 .btn-ghost {
@@ -427,7 +512,7 @@ code {
 .feature-card:hover {
   border-color: var(--highlight-med);
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px var(--card-shadow);
 }
 
 .feature-card:hover::before {
@@ -519,7 +604,123 @@ kbd {
   white-space: nowrap;
 }
 
-/* --- Stack --- */
+/* --- Tools (swappable slots) --- */
+.tools {
+  padding: 8rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tools .section-desc kbd {
+  font-size: 0.75em;
+  vertical-align: 0.05em;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.tool-card {
+  display: block;
+  text-decoration: none;
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--highlight-low);
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.tool-card:hover {
+  border-color: var(--highlight-med);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px var(--card-shadow);
+}
+
+.tool-card:hover::before {
+  opacity: 1;
+}
+
+.tool-card:hover .tool-name {
+  color: var(--gold);
+}
+
+.tool-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.tool-default {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.tool-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--text);
+  transition: color 0.3s;
+  line-height: 1.2;
+}
+
+.tool-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--foam);
+  background: rgba(156, 207, 216, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(156, 207, 216, 0.15);
+}
+
+.tool-role {
+  font-size: 0.9rem;
+  color: var(--subtle);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.tool-alts {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.6;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--highlight-low);
+}
+
+.tool-alts strong {
+  color: var(--subtle);
+  font-weight: 400;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* --- Stack (tech foundation) --- */
 .stack {
   padding: 8rem 2rem;
   max-width: 1200px;
@@ -528,8 +729,10 @@ kbd {
 
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .stack-card {
@@ -749,8 +952,12 @@ kbd {
     gap: 2rem;
   }
 
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
   .stack-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .footer-inner {
@@ -771,14 +978,25 @@ kbd {
     font-size: 16px;
   }
 
-  .stack-grid {
-    grid-template-columns: 1fr;
-  }
-
   .hero-actions {
     flex-direction: column;
     align-items: center;
   }
+}
+
+/* --- Light theme adjustments --- */
+:root[data-theme="light"] .noise {
+  opacity: 0.02;
+}
+
+:root[data-theme="light"] .hero-grid {
+  background-image:
+    linear-gradient(rgba(87, 82, 121, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87, 82, 121, 0.06) 1px, transparent 1px);
+}
+
+:root[data-theme="light"] .hero-ornament {
+  opacity: 0.35;
 }
 
 /* --- Selection --- */

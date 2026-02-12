@@ -5,6 +5,42 @@
 (function () {
   'use strict';
 
+  // --- Theme Toggle ---
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+  const STORAGE_KEY = 'bourbaki-theme';
+
+  function getPreferredTheme() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return stored;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+  }
+
+  // Apply immediately (before paint) — also set in <head> inline script ideally
+  applyTheme(getPreferredTheme());
+
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  // Listen for OS-level theme changes (only if user hasn't manually chosen)
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
   // --- Intersection Observer for scroll animations ---
   const animatedElements = document.querySelectorAll('[data-animate]');
 
@@ -27,7 +63,6 @@
 
   // --- Nav background on scroll ---
   const nav = document.querySelector('.nav');
-  let lastScroll = 0;
 
   function updateNav() {
     const scrollY = window.scrollY;
@@ -36,7 +71,6 @@
     } else {
       nav.style.borderBottomColor = 'rgba(110, 106, 134, 0.05)';
     }
-    lastScroll = scrollY;
   }
 
   window.addEventListener('scroll', updateNav, { passive: true });

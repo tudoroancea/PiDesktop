@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bourbaki — Command Your Agents</title>
-  <meta name="description" content="A macOS-native desktop app for managing AI coding agent sessions across multiple projects and git worktrees.">
+  <meta name="description" content="A macOS-native desktop app for managing AI coding agent sessions across multiple projects and git worktrees. Bring your own agent, git client, and editor.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply theme before first paint to prevent flash
+    (function(){var t=localStorage.getItem('bourbaki-theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');if(t==='light')document.documentElement.setAttribute('data-theme','light')})();
+  </script>
 </head>
 <body>
 
@@ -21,22 +25,31 @@
       <a href="#" class="nav-logo">
         <svg class="nav-icon" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
           <g transform="scale(2, -2) translate(5, -35)">
-            <rect x="23" y="-39.6" width="4" height="68" fill="var(--gold)" stroke="var(--text)" stroke-width="1.44" stroke-linejoin="round"/>
-            <path d="M21 23 Q25 27 29 23 L48 4 Q52 0 48 -4 L29 -23 Q25 -27 21 -23 L2 -4 Q-2 0 2 4 Z" fill="var(--gold)" stroke="var(--text)" stroke-width="1.44"/>
-            <line x1="9" y1="-39.6" x2="41" y2="-39.6" stroke="var(--text)" stroke-width="1.44" stroke-linecap="round"/>
-            <path d="M17 12 L33 9 A 3.03 3.03 0 0 0 33.5 3.19 L16.5 -3.19 A 3.03 3.03 0 0 1 17 -9 L33 -12" fill="none" stroke="var(--text)" stroke-width="5" stroke-linecap="butt"/>
+            <rect x="23" y="-39.6" width="4" height="68" fill="var(--icon-post)" stroke="var(--icon-stroke)" stroke-width="1.44" stroke-linejoin="round"/>
+            <path d="M21 23 Q25 27 29 23 L48 4 Q52 0 48 -4 L29 -23 Q25 -27 21 -23 L2 -4 Q-2 0 2 4 Z" fill="var(--gold)" stroke="var(--icon-stroke)" stroke-width="1.44"/>
+            <line x1="9" y1="-39.6" x2="41" y2="-39.6" stroke="var(--icon-stroke)" stroke-width="1.44" stroke-linecap="round"/>
+            <path d="M17 12 L33 9 A 3.03 3.03 0 0 0 33.5 3.19 L16.5 -3.19 A 3.03 3.03 0 0 1 17 -9 L33 -12" fill="none" stroke="var(--icon-stroke)" stroke-width="5" stroke-linecap="butt"/>
           </g>
         </svg>
         <span>Bourbaki</span>
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
-        <a href="#stack">Stack</a>
+        <a href="#tools">Tools</a>
         <a href="#start">Get Started</a>
         <a href="https://github.com/tudoroancea/Bourbaki" class="nav-cta" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
         </a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+          <svg class="theme-icon theme-icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="theme-icon theme-icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
@@ -54,9 +67,11 @@
         <span class="hero-line-2">An army of <em>agents</em>.</span>
       </h1>
       <p class="hero-sub" data-animate="fade-up" data-delay="2">
-        Bourbaki is a macOS-native desktop app for managing
-        <a href="https://github.com/mariozechner/pi-coding-agent">pi</a>
-        coding agent sessions across multiple projects and git worktrees.
+        A macOS-native desktop app for managing AI coding agent sessions
+        across multiple projects and git worktrees. Preconfigured for
+        <a href="https://github.com/mariozechner/pi-coding-agent">pi</a>,
+        <a href="https://github.com/jesseduffield/lazygit">lazygit</a>, and
+        <a href="https://zed.dev">Zed</a> — but every tool is yours to swap.
       </p>
       <div class="hero-actions" data-animate="fade-up" data-delay="3">
         <a href="#start" class="btn btn-primary">Get Started</a>
@@ -97,7 +112,7 @@
     <div class="section-header" data-animate="fade-up">
       <span class="section-number">01</span>
       <h2>Designed for the<br><em>multi-agent</em> workflow</h2>
-      <p class="section-desc">Everything you need to orchestrate coding agents, manage worktrees, and ship code — in a single, native window.</p>
+      <p class="section-desc">Everything you need to orchestrate coding agents, manage worktrees, and ship code — in a single, native window. Every tool slot is configurable from Settings.</p>
     </div>
 
     <div class="features-grid">
@@ -128,7 +143,7 @@
           </svg>
         </div>
         <h3>Tabbed Terminals</h3>
-        <p>Each tab is a full terminal powered by Ghostty — run pi agents, lazygit, or a plain shell side by side.</p>
+        <p>Each tab is a full terminal powered by Ghostty. Run your coding agent, git client, diff tool, or a plain shell — all side by side.</p>
       </div>
 
       <div class="feature-card" data-animate="fade-up" data-delay="2">
@@ -140,7 +155,7 @@
           </svg>
         </div>
         <h3>Desktop Notifications</h3>
-        <p>Pi's <code>ctx.ui.notify()</code> triggers native macOS notifications via OSC 777 — never miss an agent finishing its work.</p>
+        <p>Any tool that emits <code>OSC 777</code> triggers native macOS notifications — never miss an agent finishing its work.</p>
       </div>
 
       <div class="feature-card" data-animate="fade-up" data-delay="3">
@@ -153,7 +168,7 @@
           </svg>
         </div>
         <h3>Quick Open</h3>
-        <p>Jump to Zed, Ghostty, or Finder from any worktree with a single keystroke.</p>
+        <p>Jump to your editor, terminal, or Finder from any worktree with a single keystroke. Defaults to Zed — bring your own.</p>
       </div>
 
       <div class="feature-card" data-animate="fade-up" data-delay="4">
@@ -192,63 +207,106 @@
       <div class="keybindings-text">
         <span class="section-number">02</span>
         <h2>Keyboard-first.<br><em>Always</em>.</h2>
-        <p>Every action is reachable without touching the mouse. Keybindings are designed to never collide with Ghostty or pi defaults.</p>
+        <p>Every action is reachable without touching the mouse. Keybindings are designed to never collide with your terminal or agent's own shortcuts.</p>
       </div>
       <div class="keybindings-table">
         <div class="kb-row">
-          <span class="kb-action">New agent session</span>
-          <kbd>⌘⇧N</kbd>
+          <span class="kb-action">Open agent</span>
+          <kbd>⌘P</kbd>
         </div>
         <div class="kb-row">
-          <span class="kb-action">Close tab</span>
-          <kbd>⌘⇧W</kbd>
+          <span class="kb-action">New terminal</span>
+          <kbd>⌘T</kbd>
         </div>
         <div class="kb-row">
           <span class="kb-action">Open git</span>
-          <kbd>⌘⌃G</kbd>
+          <kbd>⌘L</kbd>
         </div>
         <div class="kb-row">
-          <span class="kb-action">Open shell</span>
-          <kbd>⌘⌃T</kbd>
+          <span class="kb-action">Open diff</span>
+          <kbd>⌘D</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Open in editor</span>
+          <kbd>⌘O</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Close tab</span>
+          <kbd>⌘W</kbd>
         </div>
         <div class="kb-row">
           <span class="kb-action">Toggle sidebar</span>
-          <kbd>⌘⌃S</kbd>
+          <kbd>⌘B</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Next / previous tab</span>
+          <kbd>⌘⌃]</kbd> / <kbd>⌘⌃[</kbd>
         </div>
         <div class="kb-row">
           <span class="kb-action">Switch tab 1–9</span>
-          <kbd>⌘⌃1</kbd> – <kbd>⌘⌃9</kbd>
+          <kbd>⌘1</kbd> – <kbd>⌘9</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Switch worktree 1–9</span>
+          <kbd>⌘⌥1</kbd> – <kbd>⌘⌥9</kbd>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Built With -->
-  <section class="stack" id="stack">
+  <!-- Your Tools -->
+  <section class="tools" id="tools">
     <div class="section-header" data-animate="fade-up">
       <span class="section-number">03</span>
-      <h2>Built on <em>foundations</em><br>worth trusting</h2>
+      <h2>Your <em>tools</em>,<br>your choice</h2>
+      <p class="section-desc">Bourbaki is preconfigured with opinionated defaults that work great together. Don't like one? Change it in <kbd>⌘,</kbd> Settings — every slot accepts any CLI command.</p>
+    </div>
+    <div class="tools-grid" data-animate="fade-up">
+      <a href="https://github.com/mariozechner/pi-coding-agent" class="tool-card" target="_blank" rel="noopener">
+        <div class="tool-label">Agent</div>
+        <div class="tool-default">
+          <span class="tool-name">pi</span>
+          <span class="tool-badge">default</span>
+        </div>
+        <div class="tool-role">The coding agent that runs in each session tab.</div>
+        <div class="tool-alts">Also works with <strong>Claude Code</strong>, <strong>Codex</strong>, <strong>aider</strong>, or any CLI agent.</div>
+      </a>
+      <a href="https://github.com/jesseduffield/lazygit" class="tool-card" target="_blank" rel="noopener">
+        <div class="tool-label">Git</div>
+        <div class="tool-default">
+          <span class="tool-name">lazygit</span>
+          <span class="tool-badge">default</span>
+        </div>
+        <div class="tool-role">Git client launched in its own dedicated tab.</div>
+        <div class="tool-alts">Also works with <strong>tig</strong>, <strong>gitui</strong>, or plain <strong>git</strong>.</div>
+      </a>
+      <a href="https://zed.dev" class="tool-card" target="_blank" rel="noopener">
+        <div class="tool-label">Editor</div>
+        <div class="tool-default">
+          <span class="tool-name">Zed</span>
+          <span class="tool-badge">default</span>
+        </div>
+        <div class="tool-role">External editor opened via quick-open.</div>
+        <div class="tool-alts">Also works with <strong>VS Code</strong>, <strong>Cursor</strong>, <strong>Neovim</strong>, or anything.</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Under the Hood -->
+  <section class="stack" id="stack">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-number">04</span>
+      <h2>Under the <em>hood</em></h2>
+      <p class="section-desc">The foundation Bourbaki is built on — native, fast, no compromises.</p>
     </div>
     <div class="stack-grid" data-animate="fade-up">
       <a href="https://ghostty.org" class="stack-card" target="_blank" rel="noopener">
         <div class="stack-name">Ghostty</div>
-        <div class="stack-role">Terminal emulation — built from source as a static xcframework</div>
-      </a>
-      <a href="https://github.com/mariozechner/pi-coding-agent" class="stack-card" target="_blank" rel="noopener">
-        <div class="stack-name">pi</div>
-        <div class="stack-role">AI coding agent that runs inside the terminal tabs</div>
-      </a>
-      <a href="https://github.com/jesseduffield/lazygit" class="stack-card" target="_blank" rel="noopener">
-        <div class="stack-name">lazygit</div>
-        <div class="stack-role">Git TUI, launched in dedicated tabs</div>
-      </a>
-      <a href="https://zed.dev" class="stack-card" target="_blank" rel="noopener">
-        <div class="stack-name">Zed</div>
-        <div class="stack-role">Code editor, opened via quick-open</div>
+        <div class="stack-role">Powers every terminal tab. Built from source as a native static xcframework. GPU-accelerated, fast, correct.</div>
       </a>
       <div class="stack-card stack-card--native">
         <div class="stack-name">SwiftUI + AppKit</div>
-        <div class="stack-role">UI framework — no third-party Swift dependencies</div>
+        <div class="stack-role">Pure native macOS UI. No Electron, no web views, no third-party Swift dependencies.</div>
       </div>
     </div>
   </section>
@@ -256,7 +314,7 @@
   <!-- Get Started -->
   <section class="start" id="start">
     <div class="start-content" data-animate="fade-up">
-      <span class="section-number">04</span>
+      <span class="section-number">05</span>
       <h2>Get started in<br><em>three commands</em></h2>
       <p>You'll need macOS 26+, Xcode with Metal Toolchain, and <a href="https://mise.jdx.dev">mise</a> for the zig toolchain.</p>
       <div class="code-block">
