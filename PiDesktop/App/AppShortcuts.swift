@@ -46,7 +46,8 @@ enum AppShortcuts {
   // Tab creation
   static let newShellTab = AppShortcut(key: "n", modifiers: [.command, .shift])
   static let newPiTab = AppShortcut(key: "n", modifiers: [.command, .control])
-  static let closeTab = AppShortcut(key: "w", modifiers: [.command, .shift])
+  static let closeTab = AppShortcut(key: "w", modifiers: [.command])
+  static let closeWindow = AppShortcut(key: "w", modifiers: [.command, .shift])
 
   // Tab navigation
   static let nextTab = AppShortcut(key: "]", modifiers: [.command, .control])
@@ -82,6 +83,7 @@ enum AppShortcuts {
     newShellTab,
     newPiTab,
     closeTab,
+    closeWindow,
     nextTab,
     previousTab,
     openLazygit,

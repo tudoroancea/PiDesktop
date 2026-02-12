@@ -52,6 +52,11 @@ struct WorktreeRowView: View {
         .fill(.yellow)
         .frame(width: 8, height: 8)
         .help("Pi session idle")
+    case .terminal:
+      Circle()
+        .fill(.secondary.opacity(0.5))
+        .frame(width: 8, height: 8)
+        .help("Terminal open (no pi session)")
     case .stopped:
       Circle()
         .strokeBorder(.secondary.opacity(0.5), lineWidth: 1)

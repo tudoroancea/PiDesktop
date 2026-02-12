@@ -191,14 +191,24 @@ final class TerminalTabManager {
 
   /// Check if there's an active pi tab running in the given worktree.
   func sessionStatus(for worktreePath: URL) -> SessionStatus {
-    let worktreeTabs = tabs.filter {
-      $0.type == .pi && $0.worktreePath.standardizedFileURL == worktreePath.standardizedFileURL
+    let allWorktreeTabs = tabs.filter {
+      $0.worktreePath.standardizedFileURL == worktreePath.standardizedFileURL
     }
-    guard !worktreeTabs.isEmpty else { return .stopped }
-    if worktreeTabs.contains(where: { $0.isRunning }) {
-      return .running
+    let piTabs = allWorktreeTabs.filter { $0.type == .pi }
+
+    if !piTabs.isEmpty {
+      if piTabs.contains(where: { $0.isRunning }) {
+        return .running
+      }
+      return .idle
     }
-    return .idle
+
+    // No pi sessions — check for any other open terminals
+    if !allWorktreeTabs.isEmpty {
+      return .terminal
+    }
+
+    return .stopped
   }
 
   // MARK: - Private

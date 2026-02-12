@@ -54,15 +54,12 @@ struct ProjectSectionView: View {
     )
     .contextMenu {
       Button("Open Pi Session") {
-        tabManager.selectWorktree(path)
         tabManager.createTab(type: .pi, workingDirectory: path)
       }
       Button("Open Lazygit") {
-        tabManager.selectWorktree(path)
         tabManager.createTab(type: .lazygit, workingDirectory: path)
       }
       Button("Open Shell") {
-        tabManager.selectWorktree(path)
         tabManager.createTab(type: .shell, workingDirectory: path)
       }
       Divider()

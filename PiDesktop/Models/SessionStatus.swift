@@ -6,6 +6,8 @@ enum SessionStatus: String, Codable, Hashable {
   case running
   /// pi process is alive but waiting for input
   case idle
-  /// No active pi session
+  /// No pi session, but terminal tabs are open
+  case terminal
+  /// No active pi session or terminals
   case stopped
 }

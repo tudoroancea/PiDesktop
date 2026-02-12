@@ -92,6 +92,14 @@ struct PiDesktopApp: App {
           modifiers: AppShortcuts.closeTab.modifiers
         )
         .disabled(tabManager.selectedTabID == nil)
+
+        Button("Close Window") {
+          NSApplication.shared.keyWindow?.close()
+        }
+        .keyboardShortcut(
+          AppShortcuts.closeWindow.keyEquivalent,
+          modifiers: AppShortcuts.closeWindow.modifiers
+        )
       }
 
       // MARK: - View Menu (Tab Navigation + Sidebar)
