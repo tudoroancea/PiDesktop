@@ -1,11 +1,12 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SidebarView: View {
   @Bindable var projectStore: ProjectStore
   @Bindable var tabManager: TerminalTabManager
-  @State private var searchText = ""
   @State private var showingAddProject = false
   @State private var collapsedProjects: Set<UUID> = []
+  @State private var draggingProjectID: UUID?
 
   var body: some View {
     List {
@@ -27,17 +28,23 @@ struct SidebarView: View {
           onRefresh: { await projectStore.refresh() }
         )
         .listRowSeparator(.hidden)
-        .listRowInsets(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+        .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 1))
         .listRowBackground(Color.clear)
-      }
-      .onMove { source, destination in
-        projectStore.moveProject(from: source, to: destination)
+        .opacity(draggingProjectID == project.id ? 0 : 1)
+        .onDrag {
+          draggingProjectID = project.id
+          return NSItemProvider(object: project.id.uuidString as NSString)
+        }
+        .onDrop(of: [.text], delegate: ProjectDropDelegate(
+          targetProjectID: project.id,
+          projectStore: projectStore,
+          draggingProjectID: $draggingProjectID
+        ))
       }
     }
     .listStyle(.sidebar)
     .scrollContentBackground(.hidden)
     .background(RosePine.surface)
-    .searchable(text: $searchText, placement: .sidebar, prompt: "Search Projects")
     .navigationTitle("Projects")
     .safeAreaInset(edge: .bottom) {
       HStack {
@@ -83,13 +90,7 @@ struct SidebarView: View {
   }
 
   private var filteredProjects: [Project] {
-    if searchText.isEmpty {
-      return projectStore.projects
-    }
-    return projectStore.projects.filter { project in
-      project.name.localizedCaseInsensitiveContains(searchText) ||
-      project.worktrees.contains { $0.name.localizedCaseInsensitiveContains(searchText) }
-    }
+    projectStore.projects
   }
 
   private var emptyState: some View {
@@ -103,5 +104,36 @@ struct SidebarView: View {
       }
       .buttonStyle(.borderedProminent)
     }
+  }
+}
+
+// MARK: - Drop Delegate
+
+private struct ProjectDropDelegate: DropDelegate {
+  let targetProjectID: UUID
+  let projectStore: ProjectStore
+  @Binding var draggingProjectID: UUID?
+
+  func dropEntered(info: DropInfo) {
+    guard let dragging = draggingProjectID, dragging != targetProjectID else { return }
+    guard let sourceIndex = projectStore.projects.firstIndex(where: { $0.id == dragging }),
+          let destinationIndex = projectStore.projects.firstIndex(where: { $0.id == targetProjectID })
+    else { return }
+
+    withAnimation(.easeInOut(duration: 0.2)) {
+      projectStore.moveProject(
+        from: IndexSet(integer: sourceIndex),
+        to: destinationIndex > sourceIndex ? destinationIndex + 1 : destinationIndex
+      )
+    }
+  }
+
+  func dropUpdated(info: DropInfo) -> DropProposal? {
+    DropProposal(operation: .move)
+  }
+
+  func performDrop(info: DropInfo) -> Bool {
+    draggingProjectID = nil
+    return true
   }
 }
