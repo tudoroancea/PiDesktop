@@ -32,6 +32,7 @@
 		BB0004010000000100000009 /* GitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0004010000000100000009 /* GitService.swift */; };
 		BB000401000000010000000A /* SessionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000401000000010000000A /* SessionScanner.swift */; };
 		BB000401000000010000000B /* ProcessMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000401000000010000000B /* ProcessMonitor.swift */; };
+		BB0007010000000100000001 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0007010000000100000001 /* AppShortcuts.swift */; };
 		BC1EE5B4D1588FF3CEDB8DEB /* GhosttySurfaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D420DAD2051A9F5053A9B96 /* GhosttySurfaceView.swift */; };
 		CC4EBADB549DFA92B407A6B1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EA61D5AC541B7A29465FBB /* Carbon.framework */; };
 		E394CE23DF70A5477738B3DD /* terminfo in Resources */ = {isa = PBXBuildFile; fileRef = 9A6348D0DE49F359B61604E2 /* terminfo */; };
@@ -77,6 +78,7 @@
 		AA0004010000000100000009 /* GitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitService.swift; sourceTree = "<group>"; };
 		AA000401000000010000000A /* SessionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScanner.swift; sourceTree = "<group>"; };
 		AA000401000000010000000B /* ProcessMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMonitor.swift; sourceTree = "<group>"; };
+		AA0007010000000100000001 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		D7068A01AADFC8F6055F0125 /* GhosttyRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttyRuntime.swift; sourceTree = "<group>"; };
 		EF97B0A1B10296473E032F2E /* GhosttySplitAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySplitAction.swift; sourceTree = "<group>"; };
 		F03062A7CEDF906A0521C0E3 /* GhosttySurfaceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhosttySurfaceState.swift; sourceTree = "<group>"; };
@@ -114,16 +116,25 @@
 			);
 			sourceTree = "<group>";
 		};
-		80D2865255AFF7F737C7183C /* PiDesktop */ = {
+			80D2865255AFF7F737C7183C /* PiDesktop */ = {
 			isa = PBXGroup;
 			children = (
 				7B0CF197EFA928EAA5669DCB /* PiDesktopApp.swift */,
+				CC0007010000000100000001 /* App */,
 				CC0004010000000100000001 /* Models */,
 				CC0004010000000100000002 /* Services */,
 				AEA7ABE7831C6F0DB4BBDF00 /* Infrastructure */,
 				CC0001010000000100000001 /* Features */,
 			);
 			path = PiDesktop;
+			sourceTree = "<group>";
+		};
+		CC0007010000000100000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0007010000000100000001 /* AppShortcuts.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		CC0004010000000100000001 /* Models */ = {
@@ -305,6 +316,7 @@
 				BB0004010000000100000009 /* GitService.swift in Sources */,
 				BB000401000000010000000A /* SessionScanner.swift in Sources */,
 				BB000401000000010000000B /* ProcessMonitor.swift in Sources */,
+				BB0007010000000100000001 /* AppShortcuts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

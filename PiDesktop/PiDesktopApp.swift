@@ -2,6 +2,20 @@ import AppKit
 import GhosttyKit
 import SwiftUI
 
+/// Builds the argv array for ghostty_init, including unbind args for all app shortcuts.
+private enum GhosttyCLI {
+  static let argv: [UnsafeMutablePointer<CChar>?] = {
+    var args: [UnsafeMutablePointer<CChar>?] = []
+    let executable = CommandLine.arguments.first ?? "PiDesktop"
+    args.append(strdup(executable))
+    for shortcut in AppShortcuts.all {
+      args.append(strdup("--keybind=\(shortcut.ghosttyKeybind)=unbind"))
+    }
+    args.append(nil)
+    return args
+  }()
+}
+
 @main
 @MainActor
 struct PiDesktopApp: App {
@@ -17,10 +31,9 @@ struct PiDesktopApp: App {
       setenv("GHOSTTY_RESOURCES_DIR", resourceURL.path, 1)
     }
 
-    // Initialize ghostty with no extra CLI args (just the executable name)
-    let argv: [UnsafeMutablePointer<CChar>?] = [strdup(CommandLine.arguments.first ?? "PiDesktop"), nil]
-    argv.withUnsafeBufferPointer { buffer in
-      let argc = UInt(max(0, buffer.count - 1))
+    // Initialize ghostty with unbind args for app-level keybindings
+    GhosttyCLI.argv.withUnsafeBufferPointer { buffer in
+      let argc = UInt(max(0, buffer.count - 1)) // exclude nil terminator
       let ptr = UnsafeMutablePointer(mutating: buffer.baseAddress)
       if ghostty_init(argc, ptr) != GHOSTTY_SUCCESS {
         preconditionFailure("ghostty_init failed")
@@ -45,19 +58,26 @@ struct PiDesktopApp: App {
       }
     }
     .commands {
+      // MARK: - File Menu (replacing New Item)
       CommandGroup(replacing: .newItem) {
-        Button("New Shell Tab") {
-          guard let dir = tabManager.selectedWorktreePath else { return }
-          tabManager.createTab(type: .shell, workingDirectory: dir)
-        }
-        .keyboardShortcut("n", modifiers: [.command, .shift])
-        .disabled(tabManager.selectedWorktreePath == nil)
-
         Button("New Pi Tab") {
           guard let dir = tabManager.selectedWorktreePath else { return }
           tabManager.createTab(type: .pi, workingDirectory: dir)
         }
-        .keyboardShortcut("n", modifiers: [.command, .control])
+        .keyboardShortcut(
+          AppShortcuts.newPiTab.keyEquivalent,
+          modifiers: AppShortcuts.newPiTab.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("New Shell Tab") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .shell, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.newShellTab.keyEquivalent,
+          modifiers: AppShortcuts.newShellTab.modifiers
+        )
         .disabled(tabManager.selectedWorktreePath == nil)
 
         Divider()
@@ -67,20 +87,40 @@ struct PiDesktopApp: App {
             tabManager.closeTab(id)
           }
         }
-        .keyboardShortcut("w", modifiers: [.command, .shift])
+        .keyboardShortcut(
+          AppShortcuts.closeTab.keyEquivalent,
+          modifiers: AppShortcuts.closeTab.modifiers
+        )
         .disabled(tabManager.selectedTabID == nil)
       }
 
+      // MARK: - View Menu (Tab Navigation + Sidebar)
       CommandGroup(after: .toolbar) {
+        Button("Toggle Sidebar") {
+          toggleSidebar()
+        }
+        .keyboardShortcut(
+          AppShortcuts.toggleSidebar.keyEquivalent,
+          modifiers: AppShortcuts.toggleSidebar.modifiers
+        )
+
+        Divider()
+
         Button("Next Tab") {
           tabManager.selectNextTab()
         }
-        .keyboardShortcut("]", modifiers: [.command, .control])
+        .keyboardShortcut(
+          AppShortcuts.nextTab.keyEquivalent,
+          modifiers: AppShortcuts.nextTab.modifiers
+        )
 
         Button("Previous Tab") {
           tabManager.selectPreviousTab()
         }
-        .keyboardShortcut("[", modifiers: [.command, .control])
+        .keyboardShortcut(
+          AppShortcuts.previousTab.keyEquivalent,
+          modifiers: AppShortcuts.previousTab.modifiers
+        )
 
         Divider()
 
@@ -88,10 +128,84 @@ struct PiDesktopApp: App {
           Button("Tab \(index + 1)") {
             tabManager.selectTabByIndex(index)
           }
-          .keyboardShortcut(KeyEquivalent(Character(String(index + 1))), modifiers: [.command, .control])
+          .keyboardShortcut(
+            KeyEquivalent(Character(String(index + 1))),
+            modifiers: [.command, .control]
+          )
         }
+
+        Button("Focus Sidebar") {
+          toggleSidebar()
+        }
+        .keyboardShortcut(
+          AppShortcuts.focusSidebar.keyEquivalent,
+          modifiers: AppShortcuts.focusSidebar.modifiers
+        )
+      }
+
+      // MARK: - Tools Menu
+      CommandMenu("Tools") {
+        Button("Open Lazygit") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .lazygit, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openLazygit.keyEquivalent,
+          modifiers: AppShortcuts.openLazygit.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("Open Lumen Diff") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .lumenDiff, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openLumenDiff.keyEquivalent,
+          modifiers: AppShortcuts.openLumenDiff.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Divider()
+
+        Button("Open in Zed") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          ExternalAppLauncher.openInZed(path: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openInZed.keyEquivalent,
+          modifiers: AppShortcuts.openInZed.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Divider()
+
+        Button("Refresh Projects") {
+          Task { await projectStore.refresh() }
+        }
+        .keyboardShortcut(
+          AppShortcuts.refreshProjects.keyEquivalent,
+          modifiers: AppShortcuts.refreshProjects.modifiers
+        )
       }
     }
+  }
+
+  private func toggleSidebar() {
+    NSApp.keyWindow?.contentViewController?.tryToPerform(
+      #selector(NSSplitViewController.toggleSidebar(_:)),
+      with: nil
+    )
+  }
+}
+
+// MARK: - External App Launcher
+
+enum ExternalAppLauncher {
+  static func openInZed(path: URL) {
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
+    process.arguments = ["-a", "Zed", path.path]
+    try? process.run()
   }
 }
 
@@ -108,7 +222,6 @@ private struct MainContentView: View {
       TerminalDetailView(tabManager: tabManager)
     }
     .frame(minWidth: 800, minHeight: 500)
-
   }
 }
 

@@ -42,3 +42,18 @@ Changes from supacode originals:
 - Removed split menu items from context menu (simplified for single-pane)
 - `nonisolated(unsafe)` on `ghosttySelection` static property
 - Simplified `SecureInput.deinit` to avoid main-actor property access
+
+## App Keybindings
+
+All app-level keybindings are defined in `PiDesktop/App/AppShortcuts.swift`. They are **unbound from ghostty** at init time via `--keybind=<bind>=unbind` CLI args passed to `ghostty_init` (same pattern as supacode). The ghostty unbind format uses `ctrl`/`alt`/`shift`/`super` modifiers joined by `+`.
+
+Key bindings use `Cmd+Ctrl` and `Cmd+Shift` combos to avoid collisions with both ghostty defaults (`Cmd+T/W/N/1-9`) and pi keybindings (`Ctrl+P/L/C/D`).
+
+## Adding Files to Xcode Project
+
+The `.xcodeproj/project.pbxproj` must be manually edited to add new Swift files:
+1. Add a `PBXBuildFile` entry (build ref → file ref)
+2. Add a `PBXFileReference` entry (file path)
+3. Add to the appropriate `PBXGroup` children list
+4. Add the build file ref to `PBXSourcesBuildPhase`
+Use the existing ID patterns (e.g. `AA0007...` / `BB0007...` / `CC0007...` for the App group).

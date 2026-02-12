@@ -266,7 +266,7 @@ struct ProjectWorktree: Identifiable {
 - If a pi tab exists for it, switches to it
 - If not, shows an empty state with a "Start pi session" button
 
-### Phase 7: Keybindings
+### Phase 7: Keybindings ✅
 
 These must not collide with ghostty defaults or pi keybindings.
 
@@ -293,7 +293,7 @@ These must not collide with ghostty defaults or pi keybindings.
 
 These are **unbound from ghostty** at init time (same pattern as supacode's `AppShortcuts.all` → `--keybind=<bind>=unbind`).
 
-### Phase 8: Open in External App
+### Phase 8: Open in External App ✅
 
 **Open in Ghostty terminal**:
 ```swift
