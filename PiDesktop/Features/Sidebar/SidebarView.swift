@@ -21,24 +21,29 @@ struct SidebarView: View {
     .background(RosePine.surface)
     .searchable(text: $searchText, placement: .sidebar, prompt: "Search Projects")
     .navigationTitle("Projects")
-    .toolbar {
-      ToolbarItem(placement: .primaryAction) {
-        HStack(spacing: 4) {
-          Button {
-            Task { await projectStore.refresh() }
-          } label: {
-            Image(systemName: "arrow.clockwise")
-          }
-          .help("Refresh")
-
-          Button {
-            showingAddProject = true
-          } label: {
-            Image(systemName: "plus")
-          }
-          .help("Add Project")
+    .safeAreaInset(edge: .bottom) {
+      HStack {
+        Button {
+          Task { await projectStore.refresh() }
+        } label: {
+          Image(systemName: "arrow.clockwise")
         }
+        .help("Refresh")
+        .buttonStyle(.borderless)
+
+        Spacer()
+
+        Button {
+          showingAddProject = true
+        } label: {
+          Image(systemName: "plus")
+        }
+        .help("Add Project")
+        .buttonStyle(.borderless)
       }
+      .padding(.horizontal, 12)
+      .padding(.vertical, 8)
+      .background(RosePine.surface)
     }
     .fileImporter(
       isPresented: $showingAddProject,
