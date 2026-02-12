@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bourbaki — Command Your Agents</title>
+  <meta name="description" content="A macOS-native desktop app for managing AI coding agent sessions across multiple projects and git worktrees.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Noise overlay for texture -->
+  <div class="noise"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <svg class="nav-icon" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+          <g transform="scale(2, -2) translate(5, -35)">
+            <rect x="23" y="-39.6" width="4" height="68" fill="var(--gold)" stroke="var(--text)" stroke-width="1.44" stroke-linejoin="round"/>
+            <path d="M21 23 Q25 27 29 23 L48 4 Q52 0 48 -4 L29 -23 Q25 -27 21 -23 L2 -4 Q-2 0 2 4 Z" fill="var(--gold)" stroke="var(--text)" stroke-width="1.44"/>
+            <line x1="9" y1="-39.6" x2="41" y2="-39.6" stroke="var(--text)" stroke-width="1.44" stroke-linecap="round"/>
+            <path d="M17 12 L33 9 A 3.03 3.03 0 0 0 33.5 3.19 L16.5 -3.19 A 3.03 3.03 0 0 1 17 -9 L33 -12" fill="none" stroke="var(--text)" stroke-width="5" stroke-linecap="butt"/>
+          </g>
+        </svg>
+        <span>Bourbaki</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#stack">Stack</a>
+        <a href="#start">Get Started</a>
+        <a href="https://github.com/tudoroancea/Bourbaki" class="nav-cta" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-animate="fade-up" data-delay="0">
+        <span class="badge-dot"></span>
+        macOS 26+ · Swift · MIT License
+      </div>
+      <h1 data-animate="fade-up" data-delay="1">
+        <span class="hero-line-1">One interface.</span>
+        <span class="hero-line-2">An army of <em>agents</em>.</span>
+      </h1>
+      <p class="hero-sub" data-animate="fade-up" data-delay="2">
+        Bourbaki is a macOS-native desktop app for managing
+        <a href="https://github.com/mariozechner/pi-coding-agent">pi</a>
+        coding agent sessions across multiple projects and git worktrees.
+      </p>
+      <div class="hero-actions" data-animate="fade-up" data-delay="3">
+        <a href="#start" class="btn btn-primary">Get Started</a>
+        <a href="https://github.com/tudoroancea/Bourbaki" class="btn btn-ghost" target="_blank" rel="noopener">View Source →</a>
+      </div>
+      <div class="hero-quote" data-animate="fade-up" data-delay="4">
+        <blockquote>
+          "The agents are interchangeable; what matters is the code they produce together."
+        </blockquote>
+      </div>
+    </div>
+    <div class="hero-ornament">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="diamond-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--iris)" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="var(--rose)" stop-opacity="0.1"/>
+          </linearGradient>
+        </defs>
+        <!-- Rotating diamond cluster -->
+        <g class="ornament-rotate" transform="translate(200,200)">
+          <path d="M0,-120 L70,-0 L0,120 L-70,0 Z" fill="none" stroke="var(--highlight-med)" stroke-width="0.5" opacity="0.4"/>
+          <path d="M0,-90 L52.5,0 L0,90 L-52.5,0 Z" fill="url(#diamond-grad)" stroke="var(--iris)" stroke-width="0.5" opacity="0.3"/>
+          <path d="M0,-60 L35,0 L0,60 L-35,0 Z" fill="none" stroke="var(--gold)" stroke-width="0.5" opacity="0.5"/>
+          <path d="M0,-30 L17.5,0 L0,30 L-17.5,0 Z" fill="var(--gold)" opacity="0.08"/>
+          <!-- S-curve (dangerous bend) -->
+          <path d="M-15,20 Q0,10 15,15 Q0,-10 -15,-20" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.6"/>
+        </g>
+        <!-- Concentric circles -->
+        <circle cx="200" cy="200" r="150" fill="none" stroke="var(--muted)" stroke-width="0.3" stroke-dasharray="4 8" class="spin-slow"/>
+        <circle cx="200" cy="200" r="170" fill="none" stroke="var(--subtle)" stroke-width="0.3" stroke-dasharray="2 12" class="spin-slow-reverse"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-number">01</span>
+      <h2>Designed for the<br><em>multi-agent</em> workflow</h2>
+      <p class="section-desc">Everything you need to orchestrate coding agents, manage worktrees, and ship code — in a single, native window.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card feature-card--large" data-animate="fade-up" data-delay="0">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="28" height="24" rx="3"/>
+            <line x1="10" y1="4" x2="10" y2="28"/>
+            <circle cx="6" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="6" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+            <line x1="14" y1="12" x2="26" y2="12" stroke-opacity="0.5"/>
+            <line x1="14" y1="16" x2="22" y2="16" stroke-opacity="0.5"/>
+            <line x1="14" y1="20" x2="24" y2="20" stroke-opacity="0.5"/>
+          </svg>
+        </div>
+        <h3>Project Sidebar</h3>
+        <p>Register local repos, browse git worktrees with live <code>+/−</code> diff stats, and see session status at a glance — running, idle, or stopped.</p>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="6" width="28" height="20" rx="2"/>
+            <path d="M8 14l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="20" y1="13" x2="26" y2="13" stroke-opacity="0.5"/>
+            <line x1="20" y1="17" x2="24" y2="17" stroke-opacity="0.5"/>
+          </svg>
+        </div>
+        <h3>Tabbed Terminals</h3>
+        <p>Each tab is a full terminal powered by Ghostty — run pi agents, lazygit, or a plain shell side by side.</p>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 4v6m0 12v6M4 16h6m12 0h6"/>
+            <circle cx="16" cy="16" r="5"/>
+            <path d="M8.5 8.5l3 3m9 9l3 3M23.5 8.5l-3 3m-9 9l-3 3"/>
+          </svg>
+        </div>
+        <h3>Desktop Notifications</h3>
+        <p>Pi's <code>ctx.ui.notify()</code> triggers native macOS notifications via OSC 777 — never miss an agent finishing its work.</p>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 16c0-5.5 4.5-10 10-10s10 4.5 10 10"/>
+            <path d="M6 16c0 5.5 4.5 10 10 10s10-4.5 10-10" stroke-dasharray="3 3"/>
+            <circle cx="16" cy="16" r="3" fill="currentColor" stroke="none" opacity="0.5"/>
+            <path d="M16 13v-4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Quick Open</h3>
+        <p>Jump to Zed, Ghostty, or Finder from any worktree with a single keystroke.</p>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="4">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 8h24M4 16h24M4 24h24" stroke-dasharray="2 3"/>
+            <circle cx="8" cy="8" r="2" fill="var(--rose)" stroke="none"/>
+            <circle cx="20" cy="16" r="2" fill="var(--foam)" stroke="none"/>
+            <circle cx="14" cy="24" r="2" fill="var(--gold)" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Rosé Pine Theme</h3>
+        <p>Beautiful dark and light themes that auto-switch with your system appearance. Every pixel considered.</p>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="5">
+        <div class="feature-icon">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 6 L6 6 L6 10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 6 L26 6 L26 10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 26 L6 26 L6 22" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 26 L26 26 L26 22" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 12h8v8h-8z"/>
+            <path d="M16 10v-2M16 24v-2M10 16h-2M24 16h-2" stroke-opacity="0.4"/>
+          </svg>
+        </div>
+        <h3>Worktree Management</h3>
+        <p>Create and delete worktrees from existing branches or new ones — all without leaving the app.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keybindings -->
+  <section class="keybindings" data-animate="fade-up">
+    <div class="keybindings-inner">
+      <div class="keybindings-text">
+        <span class="section-number">02</span>
+        <h2>Keyboard-first.<br><em>Always</em>.</h2>
+        <p>Every action is reachable without touching the mouse. Keybindings are designed to never collide with Ghostty or pi defaults.</p>
+      </div>
+      <div class="keybindings-table">
+        <div class="kb-row">
+          <span class="kb-action">New agent session</span>
+          <kbd>⌘⇧N</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Close tab</span>
+          <kbd>⌘⇧W</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Open git</span>
+          <kbd>⌘⌃G</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Open shell</span>
+          <kbd>⌘⌃T</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Toggle sidebar</span>
+          <kbd>⌘⌃S</kbd>
+        </div>
+        <div class="kb-row">
+          <span class="kb-action">Switch tab 1–9</span>
+          <kbd>⌘⌃1</kbd> – <kbd>⌘⌃9</kbd>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built With -->
+  <section class="stack" id="stack">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-number">03</span>
+      <h2>Built on <em>foundations</em><br>worth trusting</h2>
+    </div>
+    <div class="stack-grid" data-animate="fade-up">
+      <a href="https://ghostty.org" class="stack-card" target="_blank" rel="noopener">
+        <div class="stack-name">Ghostty</div>
+        <div class="stack-role">Terminal emulation — built from source as a static xcframework</div>
+      </a>
+      <a href="https://github.com/mariozechner/pi-coding-agent" class="stack-card" target="_blank" rel="noopener">
+        <div class="stack-name">pi</div>
+        <div class="stack-role">AI coding agent that runs inside the terminal tabs</div>
+      </a>
+      <a href="https://github.com/jesseduffield/lazygit" class="stack-card" target="_blank" rel="noopener">
+        <div class="stack-name">lazygit</div>
+        <div class="stack-role">Git TUI, launched in dedicated tabs</div>
+      </a>
+      <a href="https://zed.dev" class="stack-card" target="_blank" rel="noopener">
+        <div class="stack-name">Zed</div>
+        <div class="stack-role">Code editor, opened via quick-open</div>
+      </a>
+      <div class="stack-card stack-card--native">
+        <div class="stack-name">SwiftUI + AppKit</div>
+        <div class="stack-role">UI framework — no third-party Swift dependencies</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started -->
+  <section class="start" id="start">
+    <div class="start-content" data-animate="fade-up">
+      <span class="section-number">04</span>
+      <h2>Get started in<br><em>three commands</em></h2>
+      <p>You'll need macOS 26+, Xcode with Metal Toolchain, and <a href="https://mise.jdx.dev">mise</a> for the zig toolchain.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-dot" style="background:var(--love)"></span>
+          <span class="code-dot" style="background:var(--gold)"></span>
+          <span class="code-dot" style="background:var(--foam)"></span>
+          <span class="code-title">Terminal</span>
+        </div>
+        <pre><code><span class="code-comment"># Clone with submodules</span>
+<span class="code-cmd">git clone</span> --recursive git@github.com:tudoroancea/Bourbaki.git
+<span class="code-cmd">cd</span> Bourbaki
+
+<span class="code-comment"># Build GhosttyKit from source (~5 min first time)</span>
+<span class="code-cmd">make</span> build-ghostty-xcframework
+
+<span class="code-comment"># Build and run the app</span>
+<span class="code-cmd">make</span> run-app</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-logo">Bourbaki</span>
+        <span class="footer-note">A personal tool by <a href="https://github.com/tudoroancea">Tudor Oancea</a></span>
+      </div>
+      <div class="footer-right">
+        <span class="footer-license">MIT License</span>
+        <a href="https://github.com/tudoroancea/Bourbaki" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-flourish">
+      <span>∎</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
