@@ -20,9 +20,6 @@ struct ProjectSectionView: View {
         Spacer()
       }
       .contextMenu {
-        Button("Open in Ghostty") {
-          openInGhostty(path: project.rootPath)
-        }
         Button("Open in Zed") {
           openInZed(path: project.rootPath)
         }
@@ -59,24 +56,17 @@ struct ProjectSectionView: View {
       Button("Open Lazygit") {
         tabManager.createTab(type: .lazygit, workingDirectory: path)
       }
+      Button("Open Lumen Diff") {
+        tabManager.createTab(type: .lumenDiff, workingDirectory: path)
+      }
       Button("Open Shell") {
         tabManager.createTab(type: .shell, workingDirectory: path)
       }
       Divider()
-      Button("Open in Ghostty") {
-        openInGhostty(path: path)
-      }
       Button("Open in Zed") {
         openInZed(path: path)
       }
     }
-  }
-
-  private func openInGhostty(path: URL) {
-    let process = Process()
-    process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
-    process.arguments = ["-a", "Ghostty", path.path]
-    try? process.run()
   }
 
   private func openInZed(path: URL) {

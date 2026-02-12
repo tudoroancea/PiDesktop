@@ -60,23 +60,53 @@ struct PiDesktopApp: App {
     .commands {
       // MARK: - File Menu (replacing New Item)
       CommandGroup(replacing: .newItem) {
-        Button("New Pi Tab") {
-          guard let dir = tabManager.selectedWorktreePath else { return }
-          tabManager.createTab(type: .pi, workingDirectory: dir)
-        }
-        .keyboardShortcut(
-          AppShortcuts.newPiTab.keyEquivalent,
-          modifiers: AppShortcuts.newPiTab.modifiers
-        )
-        .disabled(tabManager.selectedWorktreePath == nil)
-
-        Button("New Shell Tab") {
+        Button("New Terminal") {
           guard let dir = tabManager.selectedWorktreePath else { return }
           tabManager.createTab(type: .shell, workingDirectory: dir)
         }
         .keyboardShortcut(
-          AppShortcuts.newShellTab.keyEquivalent,
-          modifiers: AppShortcuts.newShellTab.modifiers
+          AppShortcuts.newTerminal.keyEquivalent,
+          modifiers: AppShortcuts.newTerminal.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("Open Pi") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .pi, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openPi.keyEquivalent,
+          modifiers: AppShortcuts.openPi.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("Open Lazygit") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .lazygit, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openLazygit.keyEquivalent,
+          modifiers: AppShortcuts.openLazygit.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("Open Lumen Diff") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          tabManager.createTab(type: .lumenDiff, workingDirectory: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openLumenDiff.keyEquivalent,
+          modifiers: AppShortcuts.openLumenDiff.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
+        Button("Open in Zed") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          ExternalAppLauncher.openInZed(path: dir)
+        }
+        .keyboardShortcut(
+          AppShortcuts.openInZed.keyEquivalent,
+          modifiers: AppShortcuts.openInZed.modifiers
         )
         .disabled(tabManager.selectedWorktreePath == nil)
 
@@ -148,51 +178,6 @@ struct PiDesktopApp: App {
         .keyboardShortcut(
           AppShortcuts.focusSidebar.keyEquivalent,
           modifiers: AppShortcuts.focusSidebar.modifiers
-        )
-      }
-
-      // MARK: - Tools Menu
-      CommandMenu("Tools") {
-        Button("Open Lazygit") {
-          guard let dir = tabManager.selectedWorktreePath else { return }
-          tabManager.createTab(type: .lazygit, workingDirectory: dir)
-        }
-        .keyboardShortcut(
-          AppShortcuts.openLazygit.keyEquivalent,
-          modifiers: AppShortcuts.openLazygit.modifiers
-        )
-        .disabled(tabManager.selectedWorktreePath == nil)
-
-        Button("Open Lumen Diff") {
-          guard let dir = tabManager.selectedWorktreePath else { return }
-          tabManager.createTab(type: .lumenDiff, workingDirectory: dir)
-        }
-        .keyboardShortcut(
-          AppShortcuts.openLumenDiff.keyEquivalent,
-          modifiers: AppShortcuts.openLumenDiff.modifiers
-        )
-        .disabled(tabManager.selectedWorktreePath == nil)
-
-        Divider()
-
-        Button("Open in Zed") {
-          guard let dir = tabManager.selectedWorktreePath else { return }
-          ExternalAppLauncher.openInZed(path: dir)
-        }
-        .keyboardShortcut(
-          AppShortcuts.openInZed.keyEquivalent,
-          modifiers: AppShortcuts.openInZed.modifiers
-        )
-        .disabled(tabManager.selectedWorktreePath == nil)
-
-        Divider()
-
-        Button("Refresh Projects") {
-          Task { await projectStore.refresh() }
-        }
-        .keyboardShortcut(
-          AppShortcuts.refreshProjects.keyEquivalent,
-          modifiers: AppShortcuts.refreshProjects.modifiers
         )
       }
     }

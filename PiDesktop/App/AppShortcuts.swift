@@ -43,9 +43,12 @@ struct AppShortcut {
 }
 
 enum AppShortcuts {
-  // Tab creation
-  static let newShellTab = AppShortcut(key: "n", modifiers: [.command, .shift])
-  static let newPiTab = AppShortcut(key: "n", modifiers: [.command, .control])
+  // File menu — open tabs
+  static let newTerminal = AppShortcut(key: "t", modifiers: [.command])
+  static let openPi = AppShortcut(key: "p", modifiers: [.command])
+  static let openLazygit = AppShortcut(key: "l", modifiers: [.command])
+  static let openLumenDiff = AppShortcut(key: "d", modifiers: [.command])
+  static let openInZed = AppShortcut(key: "o", modifiers: [.command])
   static let closeTab = AppShortcut(key: "w", modifiers: [.command])
   static let closeWindow = AppShortcut(key: "w", modifiers: [.command, .shift])
 
@@ -53,15 +56,8 @@ enum AppShortcuts {
   static let nextTab = AppShortcut(key: "]", modifiers: [.command, .control])
   static let previousTab = AppShortcut(key: "[", modifiers: [.command, .control])
 
-  // Tool tabs
-  static let openLazygit = AppShortcut(key: "g", modifiers: [.command, .control])
-  static let openLumenDiff = AppShortcut(key: "d", modifiers: [.command, .control])
-
-  // External apps
-  static let openInZed = AppShortcut(key: "z", modifiers: [.command, .control])
-
   // Sidebar
-  static let toggleSidebar = AppShortcut(key: "s", modifiers: [.command, .control])
+  static let toggleSidebar = AppShortcut(key: "b", modifiers: [.command])
   static let focusSidebar = AppShortcut(key: "0", modifiers: [.command, .control])
 
   // Tab switching (Cmd+Ctrl+1-9)
@@ -75,20 +71,17 @@ enum AppShortcuts {
   static let selectTab8 = AppShortcut(key: "8", modifiers: [.command, .control])
   static let selectTab9 = AppShortcut(key: "9", modifiers: [.command, .control])
 
-  // Refresh
-  static let refreshProjects = AppShortcut(key: "r", modifiers: [.command, .shift])
-
   /// All shortcuts that need to be unbound from ghostty so the app can handle them.
   static let all: [AppShortcut] = [
-    newShellTab,
-    newPiTab,
+    newTerminal,
+    openPi,
+    openLazygit,
+    openLumenDiff,
+    openInZed,
     closeTab,
     closeWindow,
     nextTab,
     previousTab,
-    openLazygit,
-    openLumenDiff,
-    openInZed,
     toggleSidebar,
     focusSidebar,
     selectTab1,
@@ -100,6 +93,5 @@ enum AppShortcuts {
     selectTab7,
     selectTab8,
     selectTab9,
-    refreshProjects,
   ]
 }
