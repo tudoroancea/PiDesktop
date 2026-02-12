@@ -14,7 +14,7 @@ GHOSTTY_RESOURCE_PATH := $(CURRENT_MAKEFILE_DIR)/Resources/ghostty
 GHOSTTY_TERMINFO_PATH := $(CURRENT_MAKEFILE_DIR)/Resources/terminfo
 GHOSTTY_BUILD_OUTPUTS := $(GHOSTTY_XCFRAMEWORK_PATH) $(GHOSTTY_RESOURCE_PATH) $(GHOSTTY_TERMINFO_PATH)
 .DEFAULT_GOAL := help
-.PHONY: help build-ghostty-xcframework build-app run-app check test
+.PHONY: help build-ghostty-xcframework build-app run-app install-app check test
 
 help:  # Display this help.
 	@-+echo "Run make with one of the following targets:"
@@ -44,6 +44,16 @@ run-app: build-app # Build then launch (Debug) with log streaming
 	product="$$(echo "$$settings" | jq -r '.[0].buildSettings.FULL_PRODUCT_NAME')"; \
 	exec_name="$$(echo "$$settings" | jq -r '.[0].buildSettings.EXECUTABLE_NAME')"; \
 	"$$build_dir/$$product/Contents/MacOS/$$exec_name"
+
+install-app: build-ghostty-xcframework # Release build and install to /Applications
+	bash -o pipefail -c 'xcodebuild -project PiDesktop.xcodeproj -scheme PiDesktop -configuration Release build -skipMacroValidation 2>&1 | mise exec -- xcsift -qw --format toon'
+	@settings="$$(xcodebuild -project PiDesktop.xcodeproj -scheme PiDesktop -configuration Release -showBuildSettings -json 2>/dev/null)"; \
+	build_dir="$$(echo "$$settings" | jq -r '.[0].buildSettings.BUILT_PRODUCTS_DIR')"; \
+	product="$$(echo "$$settings" | jq -r '.[0].buildSettings.FULL_PRODUCT_NAME')"; \
+	echo "Installing $$product to /Applications..."; \
+	rm -rf "/Applications/$$product"; \
+	cp -R "$$build_dir/$$product" /Applications/; \
+	echo "Installed /Applications/$$product"
 
 check: # Format and lint
 	swift-format -p --in-place --recursive --configuration ./.swift-format.json PiDesktop
