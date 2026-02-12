@@ -82,6 +82,18 @@ enum AppShortcuts {
   static let selectTab8 = AppShortcut(key: "8", modifiers: [.command])
   static let selectTab9 = AppShortcut(key: "9", modifiers: [.command])
 
+  static let worktreeShortcuts: [AppShortcut] = [
+    selectWorktree1, selectWorktree2, selectWorktree3,
+    selectWorktree4, selectWorktree5, selectWorktree6,
+    selectWorktree7, selectWorktree8, selectWorktree9,
+  ]
+
+  static let tabShortcuts: [AppShortcut] = [
+    selectTab1, selectTab2, selectTab3,
+    selectTab4, selectTab5, selectTab6,
+    selectTab7, selectTab8, selectTab9,
+  ]
+
   /// All shortcuts that need to be unbound from ghostty so the app can handle them.
   static let all: [AppShortcut] = [
     newTerminal,

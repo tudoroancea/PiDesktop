@@ -52,8 +52,8 @@ private struct TabItemView: View {
   @State private var isHovering = false
 
   private var shortcutLabel: String? {
-    guard index < 9 else { return nil }
-    return "⌘⌃\(index + 1)"
+    guard index < AppShortcuts.tabShortcuts.count else { return nil }
+    return AppShortcuts.tabShortcuts[index].display
   }
 
   var body: some View {

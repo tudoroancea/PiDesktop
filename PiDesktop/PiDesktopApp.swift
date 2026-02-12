@@ -190,26 +190,20 @@ struct PiDesktopApp: App {
 
         Divider()
 
-        ForEach(0..<9, id: \.self) { index in
+        ForEach(Array(AppShortcuts.worktreeShortcuts.enumerated()), id: \.offset) { index, shortcut in
           Button("Worktree \(index + 1)") {
             tabManager.selectWorktreeByIndex(index)
           }
-          .keyboardShortcut(
-            KeyEquivalent(Character(String(index + 1))),
-            modifiers: [.command]
-          )
+          .keyboardShortcut(shortcut.keyEquivalent, modifiers: shortcut.modifiers)
         }
 
         Divider()
 
-        ForEach(0..<9, id: \.self) { index in
+        ForEach(Array(AppShortcuts.tabShortcuts.enumerated()), id: \.offset) { index, shortcut in
           Button("Tab \(index + 1)") {
             tabManager.selectTabByIndex(index)
           }
-          .keyboardShortcut(
-            KeyEquivalent(Character(String(index + 1))),
-            modifiers: [.command, .control]
-          )
+          .keyboardShortcut(shortcut.keyEquivalent, modifiers: shortcut.modifiers)
         }
 
         Button("Focus Sidebar") {
