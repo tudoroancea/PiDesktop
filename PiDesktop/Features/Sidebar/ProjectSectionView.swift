@@ -103,8 +103,9 @@ struct ProjectSectionView: View {
     let isSelected = tabManager.selectedWorktreePath?.standardizedFileURL == path.standardizedFileURL
     let status = tabManager.sessionStatus(for: path)
 
-    let canDelete = worktree != nil &&
-      worktree!.path.standardizedFileURL != project.rootPath.standardizedFileURL
+    let isMain = worktree == nil ||
+      worktree!.path.standardizedFileURL == project.rootPath.standardizedFileURL
+    let canDelete = worktree != nil && !isMain
 
     return HoverableWorktreeRow(
       name: name,
@@ -112,6 +113,7 @@ struct ProjectSectionView: View {
       removedLines: worktree?.removedLines,
       sessionStatus: status,
       isSelected: isSelected,
+      isMainWorktree: isMain,
       onDelete: canDelete ? { worktreeToDelete = worktree } : nil,
       onSelect: { tabManager.selectWorktree(path) }
     )
@@ -150,6 +152,7 @@ private struct HoverableWorktreeRow: View {
   let removedLines: Int?
   let sessionStatus: SessionStatus
   let isSelected: Bool
+  var isMainWorktree: Bool = false
   var onDelete: (() -> Void)?
   var onSelect: () -> Void
 
@@ -161,6 +164,7 @@ private struct HoverableWorktreeRow: View {
       addedLines: addedLines,
       removedLines: removedLines,
       sessionStatus: sessionStatus,
+      isMainWorktree: isMainWorktree,
       onDelete: onDelete
     )
     .padding(.horizontal, 8)

@@ -5,6 +5,7 @@ struct WorktreeRowView: View {
   let addedLines: Int?
   let removedLines: Int?
   let sessionStatus: SessionStatus
+  var isMainWorktree: Bool = false
   var onDelete: (() -> Void)?
 
   @State private var isHovering = false
@@ -28,6 +29,13 @@ struct WorktreeRowView: View {
         .foregroundStyle(RosePine.text)
         .lineLimit(1)
         .truncationMode(.middle)
+
+      if isMainWorktree {
+        Image(systemName: "pin.fill")
+          .font(.jetBrainsMono(size: 9))
+          .foregroundStyle(RosePine.muted)
+          .help("Main worktree — cannot be deleted")
+      }
 
       Spacer()
 
