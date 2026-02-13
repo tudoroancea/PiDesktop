@@ -92,6 +92,7 @@ struct ProjectSectionView: View {
       DeleteWorktreeView(
         projectRootPath: project.rootPath,
         worktree: worktree,
+        recentStore: tabManager.recentWorktreeStore,
         onDeleted: {
           Task { await onRefresh?() }
         }

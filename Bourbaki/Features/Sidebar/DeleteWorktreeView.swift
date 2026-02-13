@@ -4,6 +4,7 @@ import SwiftUI
 struct DeleteWorktreeView: View {
   let projectRootPath: URL
   let worktree: ProjectWorktree
+  let recentStore: RecentWorktreeStore?
   let onDeleted: () -> Void
 
   @Environment(\.dismiss) private var dismiss
@@ -98,6 +99,9 @@ struct DeleteWorktreeView: View {
 
     switch result {
     case .success:
+      // Remove from recent worktrees list
+      let pathString = worktree.path.standardizedFileURL.path
+      recentStore?.removeEntry(pathString)
       onDeleted()
       dismiss()
     case .failure(let error):

@@ -54,6 +54,9 @@ struct DashboardView: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(RosePine.base)
+    .onAppear {
+      recentStore.pruneInvalidEntries()
+    }
   }
 
   private func toolWarningBanner(settings: ToolSettings) -> some View {

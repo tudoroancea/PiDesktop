@@ -73,6 +73,15 @@ final class RecentWorktreeStore {
     save()
   }
 
+  /// Remove entries whose paths no longer exist on disk.
+  func pruneInvalidEntries() {
+    let before = entries.count
+    entries.removeAll { !FileManager.default.fileExists(atPath: $0.path) }
+    if entries.count != before {
+      save()
+    }
+  }
+
   /// Clear all recent entries.
   func clearAll() {
     entries.removeAll()
