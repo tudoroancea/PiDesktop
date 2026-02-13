@@ -8,6 +8,7 @@ struct SidebarView: View {
   @State private var collapsedProjects: Set<UUID> = []
   @State private var draggingProjectID: UUID?
 
+
   var body: some View {
     ScrollView {
       LazyVStack(spacing: 4) {
@@ -28,7 +29,6 @@ struct SidebarView: View {
             onRemove: { projectStore.removeProject(project.id) },
             onRefresh: { await projectStore.refresh() }
           )
-          .opacity(draggingProjectID == project.id ? 0 : 1)
           .onDrag {
             draggingProjectID = project.id
             return NSItemProvider(object: project.id.uuidString as NSString)
