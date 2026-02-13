@@ -23,6 +23,9 @@ final class TerminalTabManager {
   /// The currently selected worktree path (set by sidebar selection).
   var selectedWorktreePath: URL?
 
+  /// Tracks the last selected tab ID for each worktree, so we can restore it when switching back.
+  private var lastSelectedTabPerWorktree: [URL: UUID] = [:]
+
   private let runtime: GhosttyRuntime
   private let notificationDelegate = NotificationDelegate()
 
@@ -71,6 +74,11 @@ final class TerminalTabManager {
     // Record in recent worktrees
     recordRecentWorktree(path: standardized)
 
+    // Save last selected tab for the previous worktree before switching
+    if let previousTab, let previousWorktreePath = previousTab.worktreePath.standardizedFileURL as URL? {
+      lastSelectedTabPerWorktree[previousWorktreePath] = previousTab.id
+    }
+
     // If the current tab is already in this worktree, keep it
     if let selectedTabID, let tab = tabs.first(where: { $0.id == selectedTabID }),
       tab.worktreePath.standardizedFileURL == standardized
@@ -78,15 +86,22 @@ final class TerminalTabManager {
       return
     }
 
-    // Try to select an existing tab in this worktree
+    // Try to select an existing tab in this worktree, preferring the last active one
     let worktreeTabs = tabs.filter { $0.worktreePath.standardizedFileURL == standardized }
-    if let first = worktreeTabs.first {
+    let targetTab: TerminalTab? = {
+      if let lastID = lastSelectedTabPerWorktree[standardized],
+         let lastTab = worktreeTabs.first(where: { $0.id == lastID }) {
+        return lastTab
+      }
+      return worktreeTabs.first
+    }()
+    if let targetTab {
       // Notify the previous tab it lost focus before switching
-      if previousTab?.id != first.id {
+      if previousTab?.id != targetTab.id {
         previousTab?.surfaceView.focusDidChange(false)
       }
-      selectedTabID = first.id
-      first.surfaceView.focusDidChange(true)
+      selectedTabID = targetTab.id
+      targetTab.surfaceView.focusDidChange(true)
       return
     }
 
@@ -199,6 +214,12 @@ final class TerminalTabManager {
     let closedTab = tabs.remove(at: index)
     closedTab.surfaceView.closeSurface()
 
+    let worktreeKey = closedTab.worktreePath.standardizedFileURL
+    // Clear last-selected tracking if it pointed to the closed tab
+    if lastSelectedTabPerWorktree[worktreeKey] == id {
+      lastSelectedTabPerWorktree.removeValue(forKey: worktreeKey)
+    }
+
     if selectedTabID == id {
       // Select the nearest visible tab
       let visible = visibleTabs
@@ -212,6 +233,9 @@ final class TerminalTabManager {
         }
       } else {
         selectedTabID = visible.first?.id
+        if let newID = selectedTabID {
+          lastSelectedTabPerWorktree[worktreeKey] = newID
+        }
       }
     }
   }
@@ -221,6 +245,9 @@ final class TerminalTabManager {
     let previousTab = selectedTab
     selectedTabID = id
     tab.hasNotification = false
+
+    // Track last selected tab for this worktree
+    lastSelectedTabPerWorktree[tab.worktreePath.standardizedFileURL] = id
 
     // Propagate focus changes so terminal OSC sequences fire correctly
     if previousTab?.id != id {
