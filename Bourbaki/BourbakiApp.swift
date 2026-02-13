@@ -155,6 +155,17 @@ struct BourbakiApp: App {
         )
         .disabled(tabManager.selectedWorktreePath == nil)
 
+        Button("Copy Worktree Path") {
+          guard let dir = tabManager.selectedWorktreePath else { return }
+          NSPasteboard.general.clearContents()
+          NSPasteboard.general.setString(dir.path, forType: .string)
+        }
+        .keyboardShortcut(
+          AppShortcuts.copyWorktreePath.keyEquivalent,
+          modifiers: AppShortcuts.copyWorktreePath.modifiers
+        )
+        .disabled(tabManager.selectedWorktreePath == nil)
+
         // Note: Cmd+W "Close" is handled by the system menu item.
         // MainWindowCloseInterceptor installs a delegate on the main window
         // that closes a tab instead of the window. For other windows (e.g.

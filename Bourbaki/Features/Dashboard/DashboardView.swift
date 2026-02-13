@@ -139,6 +139,30 @@ struct DashboardView: View {
     return map
   }
 
+  @ViewBuilder
+  private func worktreeContextMenu(for path: URL) -> some View {
+    Button("Open Agent Session") {
+      tabManager.createTab(type: .agent, workingDirectory: path)
+    }
+    Button("Open Git") {
+      tabManager.createTab(type: .git, workingDirectory: path)
+    }
+    Button("Open Diff") {
+      tabManager.createTab(type: .diff, workingDirectory: path)
+    }
+    Button("Open Shell") {
+      tabManager.createTab(type: .shell, workingDirectory: path)
+    }
+    Divider()
+    Button("Copy Path") {
+      NSPasteboard.general.clearContents()
+      NSPasteboard.general.setString(path.path, forType: .string)
+    }
+    Button("Open in Editor") {
+      ExternalAppLauncher.openInEditor(path: path)
+    }
+  }
+
   private var emptyState: some View {
     VStack(spacing: 12) {
       Image(systemName: "clock")
@@ -167,6 +191,7 @@ struct DashboardView: View {
           index: index + 1,
           onSelect: { onSelectWorktree(wt.path) }
         )
+        .contextMenu { worktreeContextMenu(for: wt.path) }
       }
     }
     .padding(.top, 8)
@@ -191,6 +216,11 @@ struct DashboardView: View {
             }
           }
         )
+        .contextMenu {
+          if let url = recentStore.url(for: entry) {
+            worktreeContextMenu(for: url)
+          }
+        }
       }
     }
     .padding(.top, 8)

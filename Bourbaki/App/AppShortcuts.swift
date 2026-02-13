@@ -51,6 +51,7 @@ enum AppShortcuts {
   static let openInEditor = AppShortcut(key: "o", modifiers: [.command])
   static let closeTab = AppShortcut(key: "w", modifiers: [.command])
   static let closeWindow = AppShortcut(key: "w", modifiers: [.command, .shift])
+  static let copyWorktreePath = AppShortcut(key: "c", modifiers: [.command, .shift])
 
   // Tab navigation
   static let nextTab = AppShortcut(key: "]", modifiers: [.command, .control])
@@ -103,6 +104,7 @@ enum AppShortcuts {
     openInEditor,
     closeTab,
     closeWindow,
+    copyWorktreePath,
     nextTab,
     previousTab,
     toggleSidebar,

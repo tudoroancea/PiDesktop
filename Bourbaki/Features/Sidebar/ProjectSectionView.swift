@@ -131,6 +131,10 @@ struct ProjectSectionView: View {
         tabManager.createTab(type: .shell, workingDirectory: path)
       }
       Divider()
+      Button("Copy Path") {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(path.path, forType: .string)
+      }
       Button("Open in Editor") {
         ExternalAppLauncher.openInEditor(path: path)
       }
