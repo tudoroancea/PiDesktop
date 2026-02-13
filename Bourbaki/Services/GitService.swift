@@ -38,12 +38,16 @@ enum GitService {
     return worktrees
   }
 
-  /// Get diff stats (added/removed lines) for a worktree.
+  /// Get diff stats (added/removed lines) for a worktree, including untracked files.
   static func diffStats(for worktreePath: URL) async -> (added: Int, removed: Int) {
-    guard let output = await runGit(["diff", "HEAD", "--shortstat"], in: worktreePath) else {
-      return (0, 0)
-    }
-    return parseDiffShortstat(output)
+    // Tracked file changes
+    let trackedOutput = await runGit(["diff", "HEAD", "--shortstat"], in: worktreePath)
+    let tracked: (added: Int, removed: Int) = trackedOutput.map { parseDiffShortstat($0) } ?? (0, 0)
+
+    // Count lines in untracked files
+    let untrackedLines = await countUntrackedLines(in: worktreePath)
+
+    return (tracked.added + untrackedLines, tracked.removed)
   }
 
   /// List all local branch names for a repository.
@@ -181,6 +185,43 @@ enum GitService {
 
       guard process.terminationStatus == 0 else { return nil }
       return String(data: data, encoding: .utf8)
+    }.value
+  }
+
+  /// Count total lines across all untracked (new) files in the worktree.
+  private static func countUntrackedLines(in directory: URL) async -> Int {
+    guard let output = await runGit(
+      ["ls-files", "--others", "--exclude-standard"],
+      in: directory
+    ) else {
+      return 0
+    }
+
+    let files = output
+      .components(separatedBy: "\n")
+      .map { $0.trimmingCharacters(in: .whitespaces) }
+      .filter { !$0.isEmpty }
+
+    guard !files.isEmpty else { return 0 }
+
+    let dir = directory
+    return await Task.detached {
+      var total = 0
+      for file in files {
+        let fileURL = dir.appendingPathComponent(file)
+        guard let data = try? Data(contentsOf: fileURL),
+              let contents = String(data: data, encoding: .utf8)
+        else { continue }
+        // Count lines (non-empty file with no trailing newline still has at least 1 line)
+        let lineCount = contents.components(separatedBy: "\n").count
+        // If the file ends with a newline, components produces an extra empty element
+        if contents.hasSuffix("\n") {
+          total += lineCount - 1
+        } else {
+          total += lineCount
+        }
+      }
+      return total
     }.value
   }
 
